@@ -9,24 +9,27 @@ export default class App extends Component {
     super(props);
     this.state = {
       judgement: false,
-      defaultMsg: [{ img: './image/头像 男孩.png', title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
-        , { img: './image/头像 男孩.png', title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
-        , { img: './image/头像 男孩.png', title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
-        , { img: './image/头像 男孩.png', title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
-        , { img: './image/头像 男孩.png', title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
-        , { img: './image/头像 男孩.png', title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
+      defaultMsg: [{ img: require("./image/头像 男孩.png"), title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
+        , { img: require("./image/头像 男孩.png"), title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
+        , { img: require('./image/头像 女孩.png'), title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
+        , { img: require("./image/头像 男孩.png"), title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
+        , { img: require('./image/头像 女孩.png'), title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
+        , { img: require("./image/头像 男孩.png"), title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
       ]
       ,
       defaultBottom: [{
-         img: './img/发现.png', title: '消息'}
-        , { img: './img/发现.png', title: '联系人' }
-        , { img: './img/发现.png', title: '发现' }
-        , { img: './img/发现.png', title: '我' }
+        img: require("./image/消息.png"), title: '消息'
+      }
+        , { img: require("./image/通讯录.png"), title: '联系人' }
+        , {
+          img: require("./image/发现.png"), title: '发现'
+      }
+        , { img: require("./image/我.png"), title: '我' }
       ]
     }
   }
   render() {
-    
+
     return (
 
       <div className="App" onClick={this.showLog}>
@@ -41,29 +44,29 @@ export default class App extends Component {
         }
         <div className="ending"></div>
         <hr />
-        
+
         <div className="end">
-        {this.state.judgement ? <DialogView/>:''}
+          {this.state.judgement ? <DialogView /> : ''}
           <hr />
           {this.state.defaultBottom.map((item, idex) => {
-          return <Button data={item} key={idex}></Button>
-        })
-        }
+            return <Button data={item} key={idex}></Button>
+          })
+          }
         </div>
       </div>
     );
   }
 
-  showLog=()=>{
+  showLog = () => {
     console.log(this.state.judgement)
     if (this.state.judgement) {
       this.setState({
-        judgement:false
+        judgement: false
       })
     }
     else {
       this.setState({
-        judgement:true
+        judgement: true
       })
     }
   }

@@ -6,7 +6,7 @@ export default class Item extends Component {
             <div className="top">
                 <div className="item">
                     <div className="left">
-                        <img src={require('./image/头像 男孩.png')} alt="图片加载失败" />
+                        <img src={this.props.data.img} alt="图片加载失败" />
                         <div className="text">
                             <ol>
                                 <li>

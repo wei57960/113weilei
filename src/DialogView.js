@@ -5,7 +5,6 @@ export default class DialogView extends Component{
     }
  
     render(){
-        console.log("wanch")
         return(
             <div className="dialog" onClick={this.showMessage}>
                 <button ref="all">全选</button>
