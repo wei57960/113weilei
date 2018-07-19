@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-
+import Menu from './Menu'
 export default class Item extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+             isMenuActive: false
+        }
+
+    }
     render() {
         return (
             <div className="top">
@@ -19,9 +26,14 @@ export default class Item extends Component {
                         </div>
                     </div>
                     <div className="time">{this.props.data.time}</div>
+                    <button onClick={this.handleShowMenu.bind(this, true)}>更多</button >
                 </div>
                 <hr />
+                <Menu isActive={this.state.isMenuActive} onCloseClick={this.handleShowMenu}/>
             </div>
         )
     }
+    handleShowMenu = isActive => {
+        this.setState({ isMenuActive: isActive });
+      }
 }

@@ -22,19 +22,26 @@ export default class App extends Component {
       }
         , { img: require("./image/通讯录.png"), title: '联系人' }
         , {
-          img: require("./image/发现.png"), title: '发现'
+        img: require("./image/发现.png"), title: '发现'
       }
         , { img: require("./image/我.png"), title: '我' }
-      ]
+      ],
+      isDialogActive: false
+
     }
   }
+  
+
   render() {
-
     return (
+   
 
-      <div className="App" onClick={this.showLog}>
+      <div className="App" >
         <div className="head">
           <h3>小年糕</h3>
+          <div className="addMsg" onClick={this.handleShowDialog.bind(this, true)}>
+            <img src={require('./image/添加 加号 无边框.png')} alt="图片加载失败" />
+          </div>
         </div>
 
         <div className="coping"></div>
@@ -46,28 +53,30 @@ export default class App extends Component {
         <hr />
 
         <div className="end">
-          {this.state.judgement ? <DialogView /> : ''}
+          {/* {this.state.judgement ? <DialogView /> : ''} */}
           <hr />
           {this.state.defaultBottom.map((item, idex) => {
             return <Button data={item} key={idex}></Button>
           })
           }
         </div>
+        <DialogView isActive={this.state.isDialogActive} onCloseClick={this.handleShowDialog} passMsg={this.passMsg} />
       </div>
     );
   }
 
-  showLog = () => {
-    console.log(this.state.judgement)
-    if (this.state.judgement) {
-      this.setState({
-        judgement: false
-      })
-    }
-    else {
-      this.setState({
-        judgement: true
-      })
-    }
+
+
+  handleShowDialog = isActive => {
+    this.setState({ isDialogActive: isActive });
+  }
+
+  passMsg=(e)=>{
+    const item=e
+    const newMsg=this.state.defaultMsg.slice()
+    newMsg.push(e);
+    this.setState({
+      defaultMsg:newMsg
+    })
   }
 }
