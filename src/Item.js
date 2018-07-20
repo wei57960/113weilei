@@ -26,14 +26,15 @@ export default class Item extends Component {
                         </div>
                     </div>
                     <div className="time">{this.props.data.time}</div>
-                    <button onClick={this.handleShowMenu.bind(this, true)}>更多</button >
+                    <button onClick={this.handleShowMenu} >更多</button >
                 </div>
                 <hr />
-                <Menu isActive={this.state.isMenuActive} onCloseClick={this.handleShowMenu}/>
+                <Menu isActive={this.state.isMenuActive} onCloseClick={this.handleShowMenu} handleStick={this.props.handleStick}/>
             </div>
         )
     }
     handleShowMenu = isActive => {
+        this.props.changeIdex(this.props.itemIdex);
         this.setState({ isMenuActive: isActive });
       }
 }

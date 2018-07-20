@@ -2,3 +2,7 @@
 .menu button{
     width: 100%;
 }
+
+.mask-ctn{
+    z-index: 999;
+}

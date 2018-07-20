@@ -9,7 +9,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       judgement: false,
-      defaultMsg: [{ img: require("./image/头像 男孩.png"), title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
+      defaultMsg: [{ img: require("./image/头像 男孩.png"), title: '小年糕前端训练营111', message: 'Peter:了解了解[开心]', time: '上午9:35' }
         , { img: require("./image/头像 男孩.png"), title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
         , { img: require('./image/头像 女孩.png'), title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
         , { img: require("./image/头像 男孩.png"), title: '小年糕前端训练营', message: 'Peter:了解了解[开心]', time: '上午9:35' }
@@ -26,15 +26,15 @@ export default class App extends Component {
       }
         , { img: require("./image/我.png"), title: '我' }
       ],
-      isDialogActive: false
-
+      isDialogActive: false,
+      idex: null
     }
   }
-  
+
 
   render() {
     return (
-   
+
 
       <div className="App" >
         <div className="head">
@@ -46,7 +46,7 @@ export default class App extends Component {
 
         <div className="coping"></div>
         {this.state.defaultMsg.map((item, idex) => {
-          return <Item data={item} key={idex}></Item>
+          return <Item data={item} key={idex} itemIdex={idex} changeIdex={this.handleIdex} handleStick={this.handleStick}></Item>
         })
         }
         <div className="ending"></div>
@@ -65,18 +65,33 @@ export default class App extends Component {
     );
   }
 
-
+  handleIdex = (idexx) => {
+    this.setState({
+      idex: idexx
+    })
+  }
 
   handleShowDialog = isActive => {
     this.setState({ isDialogActive: isActive });
   }
 
-  passMsg=(e)=>{
-    const item=e
-    const newMsg=this.state.defaultMsg.slice()
+  handleStick = () => {
+    const newMsg = this.state.defaultMsg.slice();
+    const Item = newMsg.splice(this.state.idex, 1);
+    newMsg.unshift(Item[0])
+    const k = newMsg;
+    this.setState({
+      defaultMsg: k
+    })
+
+  }
+
+  passMsg = (e) => {
+    const item = e
+    const newMsg = this.state.defaultMsg.slice()
     newMsg.push(e);
     this.setState({
-      defaultMsg:newMsg
+      defaultMsg: newMsg
     })
   }
 }
