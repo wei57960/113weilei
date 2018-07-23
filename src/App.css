@@ -56,6 +56,7 @@ body {
   width: 100%;
   height: 4.5em;
   background-color: #76becc;
+  border-top : #908d8d  2px solid;
 }
 
 .end::after {
@@ -113,6 +114,7 @@ p {
   width: 20%;
   float: left;
   margin-left: 4%;
+  margin-top:6px;
 }
 
 .button img{
@@ -146,4 +148,11 @@ hr {
   position: absolute;
   right:25px;
   margin-top: 43px;
+}
+
+.menu button{
+  margin-top:50px;
+  background-color: white;
+  border:0;
+  height:3em;
 }

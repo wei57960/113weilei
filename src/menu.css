@@ -6,3 +6,15 @@
 .mask-ctn{
     z-index: 999;
 }
+
+ .deleteMore{
+    border-radius: 100%;
+    bottom: 13px;
+    margin: 10px;
+    display: inline-block;
+    position: relative;
+}
+
+.checkboxOneInput{
+    zoom: 2.5;
+}

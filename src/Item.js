@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
-import Menu from './Menu'
 export default class Item extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-             isMenuActive: false
-        }
-
-    }
     render() {
         return (
             <div className="top">
                 <div className="item">
                     <div className="left">
+                        {this.Delete()}
                         <img src={this.props.data.img} alt="图片加载失败" />
                         <div className="text">
                             <ol>
@@ -26,15 +19,29 @@ export default class Item extends Component {
                         </div>
                     </div>
                     <div className="time">{this.props.data.time}</div>
-                    <button onClick={this.handleShowMenu} >更多</button >
+                    <button onClick={this.handleMenuIdex} >更多</button >
                 </div>
                 <hr />
-                <Menu isActive={this.state.isMenuActive} onCloseClick={this.handleShowMenu} handleStick={this.props.handleStick}/>
             </div>
         )
     }
-    handleShowMenu = isActive => {
-        this.props.changeIdex(this.props.itemIdex);
-        this.setState({ isMenuActive: isActive });
-      }
+
+    handleMenuIdex = () => {
+        this.props.handleShowMenu(this.props.itemIdex)
+    }
+
+    handleItem=(e)=>{
+        this.props.handleItem(e,this.props.itemIdex)
+    }
+
+    Delete() {
+        if (this.props.isDeleteActive === false) {
+            return null
+        }
+        return (
+            <div className="deleteMore">
+                <input type="checkbox" className="checkboxOneInput" onClick={this.handleItem} ></input>
+            </div>
+        )
+    }
 }
