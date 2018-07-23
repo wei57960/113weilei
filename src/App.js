@@ -106,9 +106,7 @@ export default class App extends Component {
     })
     fun();
   }
-  // handleDeleteMore = (fun) => {
-  //   fun();
-  // }
+
 
   showMore = () => { //显示删除页面
     this.setState({ isDeleteActive: !this.state.isDeleteActive })
@@ -144,7 +142,8 @@ export default class App extends Component {
     }
     this.setState({
       defaultMsg: newMsg,
-      isDeleteActive: false
+      isDeleteActive: false,
+      itemArr:[]
     })
   }
 
