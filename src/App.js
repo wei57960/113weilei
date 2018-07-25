@@ -30,7 +30,7 @@ export default class App extends Component {
       isDeleteActive: false,
       isMenuActive: false,
       idex: null,
-      itemArr:[]
+      itemArr: []
     }
   }
 
@@ -40,9 +40,15 @@ export default class App extends Component {
         {this.showHead()}
         <div className="coping"></div>
         {this.state.defaultMsg.map((item, idex) => {
-          return <Item isDeleteActive={this.state.isDeleteActive} showMore={this.showMore} data={item} key={idex} itemIdex={idex} changeIdex={this.handleIdex} handleShowMenu={this.handleShowMenuPage}
+          return <Item isDeleteActive={this.state.isDeleteActive}
+            showMore={this.showMore}
+            data={item}
+            key={idex}
+            itemIdex={idex}
+            changeIdex={this.handleIdex}
+            handleShowMenu={this.handleShowMenuPage}
             handleItem={this.handleItem} />
-        })   
+        })
         }
         {this.showDeleteButton()}
         <div className="ending"></div>
@@ -54,7 +60,7 @@ export default class App extends Component {
         </div>
         <DialogView isActive={this.state.isDialogActive} onCloseClick={this.handleShowDialog} passMsg={this.passMsg} />
         <Menu isMActive={this.state.isMenuActive} onCloseClick={this.handleShowMenuPage} handleStick={this.handleStick} handleDelete={this.handleDelete}
-         isDeleteActive={this.showMore} />
+          isDeleteActive={this.showMore} />
       </div>
     );// handleDeleteMore={this.handleDeleteMore} 
   }
@@ -89,16 +95,14 @@ export default class App extends Component {
     const newMsg = this.state.defaultMsg.slice();
     const Item = newMsg.splice(this.state.idex, 1);
     newMsg.unshift(Item[0])
-    const k = newMsg;
     this.setState({
-      defaultMsg: k
+      defaultMsg: newMsg
     })
     f();
   }
 
   handleDelete = (fun) => { //单个删除
     const newMsg = this.state.defaultMsg.slice();
-    //  const Item = 
     newMsg.splice(this.state.idex, 1);
     console.log(this.state.idex)
     this.setState({
@@ -106,7 +110,6 @@ export default class App extends Component {
     })
     fun();
   }
-
 
   showMore = () => { //显示删除页面
     this.setState({ isDeleteActive: !this.state.isDeleteActive })
@@ -129,7 +132,7 @@ export default class App extends Component {
       this.state.itemArr.splice(deleteItem, 1)
     }
     console.log(this.state.itemArr);
-    
+
   }
 
   submitDelete = () => { //多个删除
@@ -143,7 +146,7 @@ export default class App extends Component {
     this.setState({
       defaultMsg: newMsg,
       isDeleteActive: false,
-      itemArr:[]
+      itemArr: []
     })
   }
 

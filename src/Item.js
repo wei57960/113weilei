@@ -21,7 +21,6 @@ export default class Item extends Component {
                     <div className="time">{this.props.data.time}</div>
                     <button onClick={this.handleMenuIdex} >更多</button >
                 </div>
-                <hr />
             </div>
         )
     }

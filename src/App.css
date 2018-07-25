@@ -124,10 +124,7 @@ p {
   height: 100%; 
 
 }
-hr {
-  width: 90%;
-  margin: 0 auto;
-}
+
 .ending{
   height:4.3em;
 }
@@ -157,4 +154,14 @@ hr {
   background-color: white;
   border:0;
   height:3em;
+}
+
+.deleteButton button{
+  zoom: 1.5;
+  position: absolute;
+  left:20%;
+}
+
+.item{
+  border-bottom: #908d8d 2px solid;
 }
