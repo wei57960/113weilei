@@ -3,6 +3,7 @@ import DialogView from './DialogView';
 import Button from './Button';
 import './App.css';
 import Menu from './Menu';
+import NavBar from './components/NavBar'
 import TodoItemList from './TodoItemList/TodoItemList';
 import { connect } from 'react-redux'
 import { isDialog } from './actions';
@@ -10,25 +11,16 @@ import { isDialog } from './actions';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      judgement: false,
-
-      defaultBottom: [{
-        img: require("./image/消息.png"), title: '消息'
-      }
-        , { img: require("./image/通讯录.png"), title: '联系人' }
-        , {
-        img: require("./image/发现.png"), title: '发现'
-      }
-        , { img: require("./image/我.png"), title: '我' }
-      ],
-      isDeleteActive: false,
-      itemArr: []
-    }
+    // this.state = {
+    //   judgement: false,
+    //   isDeleteActive: false,
+    //   itemArr: []
+    // }
   }
 
   render() {
     const list = this.props.dataItems;
+    const items = this.props.defaultBottoms
     const { dispatch } = this.props;
     const isMenuActive = this.props.isMenuActive;
     const isDialogActive = this.props.isDialogActive;
@@ -38,17 +30,10 @@ class App extends Component {
         {this.showHead()}
         <div className="coping"></div>
         <TodoItemList list={list} dispatch={dispatch} ></TodoItemList>
-        {this.showDeleteButton()}
+        {/* {this.showDeleteButton()} */}
         <div className="ending"></div>
-
-        <div className="end">
-          {this.state.defaultBottom.map((item, idex) => {
-            return <Button className="idx-btn" data={item} key={idex}></Button>
-          })
-          }
-        </div>
-
-        <DialogView dispatch={this.dispatch} isDialogActive={isDialogActive}  />
+        <NavBar items={items} dispatch={dispatch}></NavBar>
+        <DialogView dispatch={dispatch} isDialogActive={isDialogActive}  />
         <Menu isMenuActive={isMenuActive} idex={this.handleIdex}
           dispatch={dispatch} />
       </div>
@@ -77,55 +62,49 @@ class App extends Component {
     dispatch(action)
   }
 
-
-
-
-
   // showMore = () => { //显示删除页面
   //   this.setState({ isDeleteActive: !this.state.isDeleteActive })
   // }
 
-  showDeleteButton() { //显示删除按钮
-    if (this.state.isDeleteActive === false) {
-      return null
-    } return (
-      <div className="deleteButton"><button onClick={this.submitDelete}>删除</button></div>
-    )
-  }
+  // showDeleteButton() { //显示删除按钮
+  //   if (this.state.isDeleteActive === false) {
+  //     return null
+  //   } return (
+  //     <div className="deleteButton"><button onClick={this.submitDelete}>删除</button></div>
+  //   )
+  // }
 
+  // handleItem = (e, idex) => { //多个删除时往数组里面添加删除元素
+  //   if (e.target.checked) {
+  //     this.state.itemArr.push(idex)
+  //   } else {
+  //     let deleteItem = this.state.itemArr.indexOf(e.target.value)
+  //     this.state.itemArr.splice(deleteItem, 1)
+  //   }
+  //   console.log(this.state.itemArr);
+  // }
 
-  handleItem = (e, idex) => { //多个删除时往数组里面添加删除元素
-    if (e.target.checked) {
-      this.state.itemArr.push(idex)
-    } else {
-      let deleteItem = this.state.itemArr.indexOf(e.target.value)
-      this.state.itemArr.splice(deleteItem, 1)
-    }
-    console.log(this.state.itemArr);
-
-  }
-
-  submitDelete = () => { //多个删除
-    this.state.itemArr.sort();     //排序
-    const newMsg = this.state.defaultMsg.slice();
-    this.state.itemArr.reverse();                     //反转
-    console.log(this.state.itemArr)
-    for (let i = 0; i < this.state.itemArr.length; i++) {   //删除
-      newMsg.splice(this.state.itemArr[i], 1);
-    }
-    this.setState({
-      defaultMsg: newMsg,
-      isDeleteActive: false,
-      itemArr: []
-    })
-  }
+  // submitDelete = () => { //多个删除
+  //   this.state.itemArr.sort();     //排序
+  //   const newMsg = this.state.defaultMsg.slice();
+  //   this.state.itemArr.reverse();                     //反转
+  //   console.log(this.state.itemArr)
+  //   for (let i = 0; i < this.state.itemArr.length; i++) {   //删除
+  //     newMsg.splice(this.state.itemArr[i], 1);
+  //   }
+  //   this.setState({
+  //     defaultMsg: newMsg,
+  //     isDeleteActive: false,
+  //     itemArr: []
+  //   })
+  // }
 
 
 }
 
-function mapStateProps(state, ownProps) {
-
+function mapStateToProps(state, ownProps) {
+  
   return state;
 }
 
-export default connect(mapStateProps)(App);
+export default connect(mapStateToProps)(App);

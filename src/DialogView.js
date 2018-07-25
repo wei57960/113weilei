@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './DialogView.css';
 import { addItem, closeButton } from './actions'
-import { connect } from 'react-redux'
 
- class DialogView extends Component {
+export default class DialogView extends Component {
     constructor(props) {
         super(props);
         this.handleAddItem = this.handleAddItem.bind(this);
@@ -52,8 +51,7 @@ import { connect } from 'react-redux'
 
     render() {
         const { isDialogActive } = this.props;
-        if (isDialogActive===false) 
-        {   console.log(1)
+        if (isDialogActive === false) {
             return null;
         }
         return (
@@ -81,11 +79,3 @@ import { connect } from 'react-redux'
     }
 }
 
-function mapStateProps(state, ownProps) {
-    // state.list;
-    const props = { list: null };
-    props.list = state.list;
-    return props;
-  }
-  
-  export default connect(mapStateProps)(DialogView);

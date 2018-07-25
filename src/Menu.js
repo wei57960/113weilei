@@ -23,8 +23,6 @@ export default class Menu extends Component {
     }
 
     handleDeleteMore = () => {
-        this.props.isDeleteActive()
-        // this.props.handleDeleteMore(this.handleClose)
         this.handleClose();
     }
 
