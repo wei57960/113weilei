@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './DialogView.css';
-export default class DialogView extends Component {
+import { addItem, closeButton } from './actions'
+import { connect } from 'react-redux'
+
+ class DialogView extends Component {
     constructor(props) {
         super(props);
         this.handleAddItem = this.handleAddItem.bind(this);
@@ -29,7 +32,9 @@ export default class DialogView extends Component {
     };
 
     handleClose = () => {
-        this.props.onCloseClick(false);
+        const { dispatch } = this.props;
+        const action = closeButton()
+        dispatch(action);
     }
 
     handleAddItem = () => {
@@ -37,15 +42,18 @@ export default class DialogView extends Component {
             img: require("./image/头像 男孩.png"), title: this.state.a, message: this.state.b, time: this.state.c
         }
         if (this.state.a && this.state.b && this.state.c) {
-            this.props.passMsg(data)
+            const { dispatch } = this.props;
+            const action = addItem(data)
+            dispatch(action);
         }
         this.setState({ a: '', b: '', c: '' })
         this.handleClose();
     }
 
     render() {
-        const { isActive } = this.props;
-        if (!isActive) {
+        const { isDialogActive } = this.props;
+        if (isDialogActive===false) 
+        {   console.log(1)
             return null;
         }
         return (
@@ -72,3 +80,12 @@ export default class DialogView extends Component {
         )
     }
 }
+
+function mapStateProps(state, ownProps) {
+    // state.list;
+    const props = { list: null };
+    props.list = state.list;
+    return props;
+  }
+  
+  export default connect(mapStateProps)(DialogView);

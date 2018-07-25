@@ -1,27 +1,36 @@
 import React, { Component } from 'react';
 import './menu.css'
+import { closeButton, itemStick, deleteItem } from './actions'
 export default class Menu extends Component {
+
+
     handleClose = () => {
-        this.props.onCloseClick(false);
+        const { dispatch } = this.props;
+        const action = closeButton()
+        dispatch(action)
     }
- 
+
     handleStick = () => {
-        this.props.handleStick(this.handleClose)
+        const { dispatch } = this.props;
+        const action = itemStick()
+        dispatch(action)
     }
 
     handleDelete = () => {
-        this.props.handleDelete(this.handleClose)
+        const { dispatch } = this.props;
+        const action = deleteItem()
+        dispatch(action)
     }
 
-    handleDeleteMore=()=>{
+    handleDeleteMore = () => {
         this.props.isDeleteActive()
         // this.props.handleDeleteMore(this.handleClose)
         this.handleClose();
     }
-    
+
     render() {
-        const { isMActive } = this.props;
-        if (!isMActive) {
+        const { isMenuActive } = this.props;
+        if (isMenuActive === false) {
             return null;
         }
         return (
