@@ -1,0 +1,32 @@
+.red-btn{
+    width:20px;
+    height:20px;
+    background-color: #ff0033;
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.yellow-btn{
+    width:20px;
+    height:20px;
+    background-color: #ffff66;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.pur-btn{
+    width:20px;
+    height:20px; 
+     background-color: #ff00cc;
+     display: inline-block;
+     margin-left: 20px;
+}
+
+.black-btn{
+    width:20px;
+    height:20px;
+    background-color: #000000;
+    display: inline-block;
+    margin-left: 20px;
+}
