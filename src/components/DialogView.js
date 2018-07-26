@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './DialogView.css';
-import { addItem, closeButton } from './actions'
 
 export default class DialogView extends Component {
     constructor(props) {
@@ -31,19 +30,17 @@ export default class DialogView extends Component {
     };
 
     handleClose = () => {
-        const { dispatch } = this.props;
-        const action = closeButton()
-        dispatch(action);
+        const { todoActions } = this.props;
+        todoActions.closeButton()
     }
 
     handleAddItem = () => {
         const data = {
-            img: require("./image/头像 男孩.png"), title: this.state.a, message: this.state.b, time: this.state.c
+            img: require("../image/头像 男孩.png"), title: this.state.a, message: this.state.b, time: this.state.c
         }
         if (this.state.a && this.state.b && this.state.c) {
-            const { dispatch } = this.props;
-            const action = addItem(data)
-            dispatch(action);
+            const { todoActions } = this.props;
+            todoActions.addItem(data)
         }
         this.setState({ a: '', b: '', c: '' })
         this.handleClose();

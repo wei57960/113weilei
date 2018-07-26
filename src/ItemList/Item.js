@@ -1,40 +1,51 @@
 import React, { Component } from 'react';
 export default class Item extends Component {
     render() {
+        const { item } = this.props
         return (
             <div className="top">
                 <div className="item">
                     <div className="left">
                         {this.Delete()}
-                        <img src={this.props.data.img} alt="图片加载失败" />
+                        <img src={item.img} alt="图片加载失败" />
                         <div className="text">
                             <ol>
                                 <li>
-                                    <h1>{this.props.data.title}</h1>
+                                    <h1>{item.title}</h1>
                                 </li>
                                 <li>
-                                    <p>{this.props.data.message}</p>
+                                    <p>{item.message}</p>
                                 </li>
                             </ol>
                         </div>
                     </div>
-                    <div className="time">{this.props.data.time}</div>
-                    <button onClick={this.handleMenuIdex} >更多</button >
+                    <div className="time">{item.time}</div>
+                    <button onClick={this.handleMenu} >更多</button >
                 </div>
             </div>
         )
     }
 
-    handleMenuIdex = () => {
-        this.props.handleShowMenu(this.props.itemIdex)
+    handleItem = (e) => {
+        const index = this.props.idx
+        const { todoActions } = this.props;
+        if (e.target.checked) {
+            todoActions.addItems(index)
+        } else {
+            todoActions.delItems(index)
+        }
     }
 
-    handleItem=(e)=>{
-        this.props.handleItem(e,this.props.itemIdex)
+    handleMenu = () => {
+        const index = this.props.idx
+        const { todoActions } = this.props;
+        todoActions.isMenu()
+        todoActions.handleIndex(index)
     }
 
     Delete() {
-        if (this.props.isDeleteActive === false) {
+        const { isDeleteActive } = this.props
+        if (isDeleteActive === false) {
             return null
         }
         return (
