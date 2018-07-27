@@ -1,4 +1,8 @@
-import { ADD_ITEM, DELETE_ITEM, DELETE_ITEMS, ITEM_STICK, IS_DIALOG, IS_MENU, CLOSE_BUTTON, HANDLE_INDEX, IS_DELETE, ADD_ITEM_INDEX, DEL_ITEM_INDEX } from '../const/ActionTypes'
+import {
+    ADD_ITEM, DELETE_ITEM, DELETE_ITEMS, ITEM_STICK,
+    IS_DIALOG, IS_MENU, CLOSE_BUTTON, HANDLE_INDEX, IS_DELETE,
+    ADD_ITEM_INDEX, DEL_ITEM_INDEX
+} from '../const/ActionTypes'
 //action创建函数
 export function addItem(text) {
     return { type: ADD_ITEM, text }

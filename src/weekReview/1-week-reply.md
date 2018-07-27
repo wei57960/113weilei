@@ -19,8 +19,8 @@
         componentWillMount() 组件将要挂载 只渲染一次
         componentDidMount() 组件已经挂载 只渲染一次
         -------------------------之后会监听props当父组件传入新的props时子组件会渲染
-        componentWillReciveProps(nextProps) 父组件发生render时子组件就会调用
-        shouldComponentUpdate(nextProps,nextState) 是否更新 每次调用setState时判断是否重新渲染组件
+        componentWillReciveProps(nextProps) 父组件发生render时子组件就会调用 组件将要接收新的props执行
+        shouldComponentUpdate(nextProps,nextState) 是否更新 每次调用setState时判断是否重新渲染组件   判断组件是否应该重新渲染，默认是true
         componentWillUpdate() 将要更新状态  当上一级返回true时该级会被调用
         componentDidUpdate() 更新完成 render结束后调用   
         -------------------------组件将要被卸载
