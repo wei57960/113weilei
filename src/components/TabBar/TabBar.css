@@ -1,0 +1,19 @@
+.tab-bar-top{
+    overflow: hidden;
+    border-bottom: #908d8d 1px solid;
+    margin-top:20px;
+    margin-left: 40px;
+}
+
+.tab-bar{
+    float:left;
+}
+
+.tab-bar button{
+    border: 0;
+}
+
+.sel-btn{
+    border-bottom: 2px solid;
+    float:left;
+}

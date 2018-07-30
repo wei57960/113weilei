@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import list from './list';
-import isActive from './isActive'
+import headerList from './headerList'
+import tableList from './tableList'
 
 export default combineReducers({
-    list,
-    isActive
+    headerList,
+    tableList
 });
