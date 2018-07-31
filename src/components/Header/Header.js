@@ -8,7 +8,7 @@ export default class Header extends React.Component {
     componentWillMount() {
         const dispatch = this.props.dispatch;
         api.getUserInfo(330900002, dispatch)
-        api.getLessonInfo(1,dispatch)
+        api.getLessonInfo(1, dispatch)
     }
     render() {
         const item = this.props.item;
@@ -27,10 +27,10 @@ export default class Header extends React.Component {
                     <p>最后登录时间：{item.lastLoginDate}</p>
                 </div>
                 <div className='rig'>
-                    <div > <p >手机号码：</p> {item.tel}<Icon type="file-text" /></div>
-                    <div ><p >微信号码：</p><Input placeholder="Basic usage" /> <Button>提交</Button></div>
-                    <div > <p>备注：  </p> <Input placeholder="Basic usage" /> <Button>提交</Button></div>
-                </div >
+                    <div><p>手机号码：</p> {item.tel}<Icon type="file-text" /></div>
+                    <div><p>微信号码：</p><Input placeholder="Basic usage" /> <Button>提交</Button></div>
+                    <div><p className="fin-p">备注 ：</p> <Input placeholder="Basic usage" /> <Button>提交</Button></div>
+                </div>
             </div >
         )
     }

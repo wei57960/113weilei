@@ -1,8 +1,7 @@
 import React from 'react'
 import { Icon } from 'antd'
 import './index.css'
-import { GET_LESSON_INFO_SUC, GET_LESSON_INFO_REQ, GET_LESSON_INFO_FAI, } from '../const/ActionTypes'
-import Item from 'antd/lib/list/Item';
+import * as ActionTypes from '../const/ActionTypes'
 // function handleNumbers(text, type) {
 //     if (type === 'f') {
 //         console.log(text)
@@ -31,11 +30,8 @@ import Item from 'antd/lib/list/Item';
 
 const defaultMsgs = {
     learningCourse: [
-      
     ],
-
     dataSource: [
-      
     ],
 
     columns: [{
@@ -83,11 +79,11 @@ const defaultMsgs = {
         key: 'homeworkSubmitRate',
         render: text => {
             if (text < 0.8) {
-                return <span className='Red'>{(text*100).toFixed(2)+'%'}</span>
+                return <span className='Red'>{(text * 100).toFixed(2) + '%'}</span>
             } else if (text > 0.95) {
-                return <span className='Orange'>{(text*100).toFixed(2)+'%'}</span>
+                return <span className='Orange'>{(text * 100).toFixed(2) + '%'}</span>
             } else {
-                return <span>{(text*100).toFixed(2)+'%'}</span>
+                return <span>{(text * 100).toFixed(2) + '%'}</span>
             }
         }
     }, {
@@ -95,13 +91,13 @@ const defaultMsgs = {
         dataIndex: 'beCommenttedRate',
         key: 'beCommenttedRate',
         render: text => {
-            
+
             if (text < 0.8) {
-                return <span className='Red'>{(text*100).toFixed(2)+'%'}</span>
+                return <span className='Red'>{(text * 100).toFixed(2) + '%'}</span>
             } else if (text > 0.95) {
-                return <span className='Orange'>{(text*100).toFixed(2)+'%'}</span>
+                return <span className='Orange'>{(text * 100).toFixed(2) + '%'}</span>
             } else {
-                return <span>{(text*100).toFixed(2)+'%'}</span>
+                return <span>{(text * 100).toFixed(2) + '%'}</span>
             }
         }
     }, {
@@ -126,22 +122,21 @@ const defaultMsgs = {
         key: 'satisfyRate',
         render: text => {
             if (text < 0.8) {
-                return <span className='Red'>{(text*100).toFixed(2)+'%'}</span>
+                return <span className='Red'>{(text * 100).toFixed(2) + '%'}</span>
             } else if (text > 0.95) {
-                return <span className='Orange'>{(text*100).toFixed(2)+'%'}</span>
+                return <span className='Orange'>{(text * 100).toFixed(2) + '%'}</span>
             } else {
-                return <span>{(text*100).toFixed(2)+'%'}</span>
+                return <span>{(text * 100).toFixed(2) + '%'}</span>
             }
         }
     },]
-
 }
 
 export default function tableList(state = defaultMsgs, action) {
     switch (action.type) {
-        case GET_LESSON_INFO_SUC: {
+        case `${ActionTypes.GET_LESSON_INFO}_SUC`: {
             let a = state.learningCourse.slice()
-            a = action.data.data.currentLessonsList //currentLessonsList  historyLessonsList
+            a = action.data.data.currentLessonsList
             let newa = a.map((item, index) => {
                 return {
                     key: index + 1,
@@ -173,7 +168,6 @@ export default function tableList(state = defaultMsgs, action) {
                     satisfyRate: item.satisfyRate
                 }
             })
-            console.log(a)
             return { ...state, learningCourse: newa, dataSource: newb }
         }
         default:

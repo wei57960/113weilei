@@ -10,8 +10,7 @@ class Container extends React.Component {
         return (
             <div>
                 <Header item={headerList} dispatch={dispatch} />
-                <TabBar tableList={tableList} />
-                
+                <TabBar tableList={tableList} />              
             </div>
         );
     }

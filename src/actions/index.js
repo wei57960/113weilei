@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { GET_USER_INFO_SUC, GET_USER_INFO_REQ, GET_USER_INFO_FAI ,
-    GET_LESSON_INFO_SUC,GET_LESSON_INFO_REQ,GET_LESSON_INFO_FAI,} from '../const/ActionTypes'
+import * as ActionTypes from '../const/ActionTypes'
 export function getUserInfo(mid, next) {
     next({
-        type: GET_USER_INFO_REQ
+        type: `${ActionTypes.GET_USER_INFO}_REQ`
     });
     axios({
         method: 'post',
@@ -14,23 +13,22 @@ export function getUserInfo(mid, next) {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }
     ).then(res => {
-        // console.log(res);
         next({
-            type: GET_USER_INFO_SUC,
+            type: `${ActionTypes.GET_USER_INFO}_SUC`,
             data: res.data
         });
     })
         .catch(err => {
             console.log(err);
             next({
-                type: GET_USER_INFO_FAI
+                type: `${ActionTypes.GET_USER_INFO}_FAI`
             });
         });
 }
 
 export function getLessonInfo(mid ,next){
     next({
-        type: GET_LESSON_INFO_REQ
+        type: `${ActionTypes.GET_LESSON_INFO}_REQ`
     });
     axios({
         method: 'post',
@@ -41,16 +39,15 @@ export function getLessonInfo(mid ,next){
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }
     ).then(res => {
-        // console.log(res.data.currentLessonsList);
         next({
-            type: GET_LESSON_INFO_SUC,
+            type: `${ActionTypes.GET_LESSON_INFO}_SUC`,
             data: res.data
         });
     })
         .catch(err => {
             console.log(err);
             next({
-                type: GET_LESSON_INFO_FAI
+                type: `${ActionTypes.GET_LESSON_INFO}_FAI`
             });
         });
 }
