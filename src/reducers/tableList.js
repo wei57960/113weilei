@@ -1,29 +1,50 @@
+import React from 'react'
+import { Icon } from 'antd'
+import './index.css'
+import { GET_LESSON_INFO_SUC, GET_LESSON_INFO_REQ, GET_LESSON_INFO_FAI, } from '../const/ActionTypes'
+import Item from 'antd/lib/list/Item';
+// function handleNumbers(text, type) {
+//     if (type === 'f') {
+//         console.log(text)
+//         let num1 = parseInt(text.split("/")[0], 10);
+//         let num2 = parseInt(text.split("/")[1], 10);
+//         const num = num1 / num2
+//         if (num < 0.8) {
+//             return <span className='Red'>text</span>
+//         } else if (num > 0.95) {
+//             return <span className='Orange'>text</span>
+//         } else {
+//             return <span>text</span>
+//         }
+//     }
+//     else if (type === 'percent') {
+//         let res = parseInt(text);
+//         if (res < 80) {
+//             return <span className='Red'>{text}</span>
+//         } else if (res > 95) {
+//             return <span className='Orange'>{text}</span>
+//         } else {
+//             return <span>{text}</span>
+//         }
+//     }
+// }
 
 const defaultMsgs = {
-    learningCourse: [{
-        key: '1', class: '高级班', status: '进行中', startTime: '2017 - 04 - 20', teacher: '小白老师', startClass: '3 / 21',
-        homework: '67.98 %', handle: '87.98 % ', flag: '3 / 21', smile: '90.14 %'
-    }, {
-        key: '2', class: '进阶班', status: '进行中', startTime: '2017 - 04 - 21', teacher: '小白老师', startClass: '5 / 21',
-        homework: '76.89 %', handle: '31.87 % ', flag: '5 / 21', smile: '98.14 %'
-    }, {
-        key: '3', class: '提高班', status: '进行中', startTime: '2017 - 04 - 22', teacher: '小白老师', startClass: '13 / 21',
-        homework: '13.98 %', handle: '21.76 % ', flag: '13 / 21', smile: '88.01 %'
-    }, {
-        key: '4', class: '入门班', status: '进行中', startTime: '2017 - 04 - 23', teacher: '小白老师', startClass: '20 / 21',
-        homework: '98.45 %', handle: '98.67 % ', flag: '20 / 21', smile: '30.10 %'
-    }, {
-        key: '5', class: '体验班', status: '已结束', startTime: '2017 - 04 - 24', teacher: '小白老师', startClass: '21 / 21',
-        homework: '31.54 %', handle: '78.76 % ', flag: '21 / 21', smile: '90.14 %'
-    }],
-    dataSource: [{
-        key: '1', class: '高级班', status: '已结束', startTime: '2017-04-30', teacher: '小白老师',
-        startClass: '21/21', homework: '8/10', handle: '10/10', flag: '5/21', smile: '90.00%'
-    }],
+    learningCourse: [
+      
+    ],
+
+    dataSource: [
+      
+    ],
+
     columns: [{
         title: '班级',
-        dataIndex: 'class',
-        key: 'class',
+        dataIndex: 'className',
+        key: 'className',
+        render: (text) => {
+            return (<span> <Icon type="exclamation-circle" />{text}</span>)
+        }
     }, {
         title: '课程状态',
         dataIndex: 'status',
@@ -33,38 +54,130 @@ const defaultMsgs = {
         dataIndex: 'startTime',
         key: 'startTime',
     }, {
-        title: '教学组负责人',
-        dataIndex: 'teacher',
-        key: 'teacher',
+        title: '老师',
+        dataIndex: 'nick',
+        key: 'nick',
+        render: (text) => {
+            return (<span><Icon type="user" />{text}</span>)
+        }
     }, {
         title: '上课率',
-        dataIndex: 'startClass',
-        key: 'startClass',
+        dataIndex: 'enterRate',
+        key: 'enterRate',
+        render: text => {
+            let num1 = parseInt(text.split("/")[0], 10);
+            let num2 = parseInt(text.split("/")[1], 10);
+            const num = num1 / num2
+            if (num < 0.8) {
+                return <span className='Red'>{text}</span>
+            } else if (num > 0.95) {
+                return <span className='Orange'>{text}</span>
+            } else {
+                return <span>{text}</span>
+            }
+
+        }
     }, {
         title: '作业提交率',
-        dataIndex: 'homework',
-        key: 'homework',
+        dataIndex: 'homeworkSubmitRate',
+        key: 'homeworkSubmitRate',
+        render: text => {
+            let res = parseInt(text);
+            if (res < 80) {
+                return <span className='Red'>{(text*100).toFixed(2)+'%'}</span>
+            } else if (res > 95) {
+                return <span className='Orange'>{(text*100).toFixed(2)+'%'}</span>
+            } else {
+                return <span>{(text*100).toFixed(2)+'%'}</span>
+            }
+        }
     }, {
         title: '被点评情况',
-        dataIndex: 'handle',
-        key: 'handle',
+        dataIndex: 'beCommenttedRate',
+        key: 'beCommenttedRate',
+        render: text => {
+            let res = parseInt(text);
+            if (res < 80) {
+                return <span className='Red'>{(text*100).toFixed(2)+'%'}</span>
+            } else if (res > 95) {
+                return <span className='Orange'>{(text*100).toFixed(2)+'%'}</span>
+            } else {
+                return <span>{(text*100).toFixed(2)+'%'}</span>
+            }
+        }
     }, {
         title: '打卡率',
-        dataIndex: 'flag',
-        key: 'flag',
+        dataIndex: 'signRate',
+        key: 'signRate',
+        render: text => {
+            let num1 = parseInt(text.split("/")[0], 10);
+            let num2 = parseInt(text.split("/")[1], 10);
+            const num = num1 / num2
+            if (num < 0.8) {
+                return <span className='Red'>{text}</span>
+            } else if (num > 0.95) {
+                return <span className='Orange'>{text}</span>
+            } else {
+                return <span>{text}</span>
+            }
+        }
     }, {
         title: '满意度',
-        dataIndex: 'smile',
-        key: 'smile',
+        dataIndex: 'satisfyRate',
+        key: 'satisfyRate',
+        render: text => {
+            let res = parseInt(text);
+            if (res < 80) {
+                return <span className='Red'>{(text*100).toFixed(2)+'%'}</span>
+            } else if (res > 95) {
+                return <span className='Orange'>{(text*100).toFixed(2)+'%'}</span>
+            } else {
+                return <span>{(text*100).toFixed(2)+'%'}</span>
+            }
+        }
     },]
-    // historicalData: {
-    //     班级: '高级班', 课程状态: '已结束', 开课时间: '2017-4-30', 教学组责任人: '小白老师', 上课率: '21/21',
-    //     作业提交率: '8/10', 被点评情况: '10/10', 打卡率: '5/21', 满意度: '90.00%'
-    // },
+
 }
 
 export default function tableList(state = defaultMsgs, action) {
     switch (action.type) {
+        case GET_LESSON_INFO_SUC: {
+            let a = state.learningCourse.slice()
+            a = action.data.data.currentLessonsList //currentLessonsList  historyLessonsList
+            let newa = a.map((item, index) => {
+                return {
+                    key: index + 1,
+                    className: item.classInfo.name,
+                    status: item.status ? '进行中' : '结束',
+                    startTime: item.startTime,
+                    nick: item.teacherInfo.nick,
+                    enterRate: item.enterRate,
+                    homeworkSubmitRate: item.homeworkSubmitRate,
+                    beCommenttedRate: item.beCommenttedRate,
+                    signRate: item.signRate,
+                    satisfyRate: item.satisfyRate
+                }
+            })
+
+            let b = state.dataSource.slice()
+            b = action.data.data.historyLessonsList
+            let newb = b.map((item, index) => {
+                return {
+                    key: index + 1,
+                    className: item.classInfo.name,
+                    status: item.status ? '进行中' : '结束',
+                    startTime: item.startTime,
+                    nick: item.teacherInfo.nick,
+                    enterRate: item.enterRate,
+                    homeworkSubmitRate: item.homeworkSubmitRate,
+                    beCommenttedRate: item.beCommenttedRate,
+                    signRate: item.signRate,
+                    satisfyRate: item.satisfyRate
+                }
+            })
+            console.log(a)
+            return { ...state, learningCourse: newa, dataSource: newb }
+        }
         default:
             return state
     }
