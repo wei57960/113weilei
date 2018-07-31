@@ -82,10 +82,9 @@ const defaultMsgs = {
         dataIndex: 'homeworkSubmitRate',
         key: 'homeworkSubmitRate',
         render: text => {
-            let res = parseInt(text);
-            if (res < 80) {
+            if (text < 0.8) {
                 return <span className='Red'>{(text*100).toFixed(2)+'%'}</span>
-            } else if (res > 95) {
+            } else if (text > 0.95) {
                 return <span className='Orange'>{(text*100).toFixed(2)+'%'}</span>
             } else {
                 return <span>{(text*100).toFixed(2)+'%'}</span>
@@ -96,10 +95,10 @@ const defaultMsgs = {
         dataIndex: 'beCommenttedRate',
         key: 'beCommenttedRate',
         render: text => {
-            let res = parseInt(text);
-            if (res < 80) {
+            
+            if (text < 0.8) {
                 return <span className='Red'>{(text*100).toFixed(2)+'%'}</span>
-            } else if (res > 95) {
+            } else if (text > 0.95) {
                 return <span className='Orange'>{(text*100).toFixed(2)+'%'}</span>
             } else {
                 return <span>{(text*100).toFixed(2)+'%'}</span>
@@ -126,10 +125,9 @@ const defaultMsgs = {
         dataIndex: 'satisfyRate',
         key: 'satisfyRate',
         render: text => {
-            let res = parseInt(text);
-            if (res < 80) {
+            if (text < 0.8) {
                 return <span className='Red'>{(text*100).toFixed(2)+'%'}</span>
-            } else if (res > 95) {
+            } else if (text > 0.95) {
                 return <span className='Orange'>{(text*100).toFixed(2)+'%'}</span>
             } else {
                 return <span>{(text*100).toFixed(2)+'%'}</span>
