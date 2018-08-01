@@ -1,2 +1,4 @@
 export const GET_USER_INFO = 'GET_USER_INFO';
 export const GET_LESSON_INFO = 'GET_LESSON_INFO';
+export const GET_STUDENT_LIST = 'GET_STUDENT_LIST';
+export const GET_CLASS_INFO = 'GET_CLASS_INFO';

@@ -4,19 +4,22 @@ import Header from '../components/Header/Header'
 import TabBar from '../components/TabBar/TabBar'
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';
+import Personal from './Personal';
+
 class Container extends React.Component {
     componentWillMount() {
         const { Actions } = this.props;
         Actions.getUserInfo(330900002)
         Actions.getLessonInfo(1)
+        // Actions.getStudentList()
     }
     render() {
         const { tableList, headerList } = this.props;
-        const { Actions } = this.props;
         return (
             <div>
                 <Header item={headerList}  />
                 <TabBar tableList={tableList} />
+                <Personal/>
             </div>
         );
     }
@@ -34,4 +37,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Container);
-

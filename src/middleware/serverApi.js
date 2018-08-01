@@ -23,40 +23,39 @@ const callServerApi = (endpoint, params) => {
 }
 
 export default store => next => action => {
-    if (!action.SERVER_API) {
-      return next(action);
-    }
-    const {
-      type,
-      endpoint,
-      params
-    } = action.SERVER_API;
-  
-    if (typeof type !== 'string') {
-      throw new Error('type shoudle be a string');
-    }
-    if (typeof endpoint !== 'string') {
-      throw new Error('endpoint shoudle be a string');
-    }
-    if (typeof params !== 'object') {
-      throw new Error('params shoudle be a object');
-    }
-  
-    next({
-      type: `${type}_REQ`
-    });
-  
-    return callServerApi(endpoint, params)
-      .then(res => {
-        next({
-          type: `${type}_SUC`,
-          response: res.data
-        });
-      }).catch(err => {
-        next({
-          type: `${type}_FAI`,
-          errMsg: err.errMsg
-        });
+  if (!action.SERVER_API) {
+    return next(action);
+  }
+  const {
+    type,
+    endpoint,
+    params
+  } = action.SERVER_API;
+
+  if (typeof type !== 'string') {
+    throw new Error('type shoudle be a string');
+  }
+  if (typeof endpoint !== 'string') {
+    throw new Error('endpoint shoudle be a string');
+  }
+  // if (typeof params !== 'object') {
+  //   throw new Error('params shoudle be a object');
+  // }
+
+  next({
+    type: `${type}_REQ`
+  });
+
+  return callServerApi(endpoint, params)
+    .then(res => {
+      next({
+        type: `${type}_SUC`,
+        response: res.data
       });
-  };
-  
+    }).catch(err => {
+      next({
+        type: `${type}_FAI`,
+        errMsg: err.errMsg
+      });
+    });
+};
