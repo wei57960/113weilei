@@ -2,15 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux'
 import Header from '../components/Header/Header'
 import TabBar from '../components/TabBar/TabBar'
-
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions';
 class Container extends React.Component {
+    componentWillMount() {
+        const { Actions } = this.props;
+        Actions.getUserInfo(330900002)
+        Actions.getLessonInfo(1)
+    }
     render() {
         const { tableList, headerList } = this.props;
-        const { dispatch } = this.props;
+        const { Actions } = this.props;
         return (
             <div>
-                <Header item={headerList} dispatch={dispatch} />
-                <TabBar tableList={tableList} />              
+                <Header item={headerList}  />
+                <TabBar tableList={tableList} />
             </div>
         );
     }
@@ -23,7 +29,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        dispatch
+        Actions: bindActionCreators(actionCreators, dispatch)
     }
 }
 

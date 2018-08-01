@@ -7,7 +7,7 @@ const defaultHeaderMsgs = {
 export default function headerList(state = defaultHeaderMsgs, action) {
     switch (action.type) {
         case `${ActionTypes.GET_USER_INFO}_SUC`: {
-            const newState = action.data.data
+            const newState = action.response.data
             return {
                 ...newState
             }

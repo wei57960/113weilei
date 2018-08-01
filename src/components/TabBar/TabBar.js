@@ -1,6 +1,5 @@
 import React from 'react'
 import './TabBar.css'
-import Button from 'antd/lib/button';
 import { Tabs } from 'antd'
 import ButtonBox from '../ButtonBox/ButtonBox'
 import Tables from '../Tables/Tables'

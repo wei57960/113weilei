@@ -3,15 +3,10 @@ import { Avatar, Button } from 'antd';
 import { Input } from 'antd';
 import { Icon } from 'antd'
 import './Header.css'
-import * as api from '../../actions'
 export default class Header extends React.Component {
-    componentWillMount() {
-        const dispatch = this.props.dispatch;
-        api.getUserInfo(330900002, dispatch)
-        api.getLessonInfo(1, dispatch)
-    }
+    
     render() {
-        const item = this.props.item;
+        const {item} = this.props;
         return (
             <div className='header'>
                 <div className='ava'><Avatar shape="square" style={{ width: '150px', height: '150px' }} src={item.hurl} /></div>
