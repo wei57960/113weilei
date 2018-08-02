@@ -75,12 +75,12 @@ export const studentListColums = [
     },
     {
         title: '学员名',
-        dataIndex: 'mid',
-        key: 'mid',
-    }, {
-        title: '学员编号/MID',
         dataIndex: 'nick',
         key: 'nick',
+    }, {
+        title: '学员编号/MID',
+        dataIndex: 'mid',
+        key: 'mid',
     }, {
         title: '入学时间',
         dataIndex: 'enter_time',

@@ -6,7 +6,9 @@ export default class StudentTables extends React.Component {
     render() {
         const { studentList } = this.props
         return (<div>
-            <Link to='/students/1001' ><Table dataSource={studentList.studentList} columns={Columns.studentListColums} />
+            <Link to='/students/1001' >
+                <Table dataSource={studentList.studentList} columns={Columns.studentListColums}
+                    onRow={(record) => { return { onClick: () => { } } }} />
             </Link>
         </div>
         )
