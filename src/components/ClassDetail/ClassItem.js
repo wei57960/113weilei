@@ -11,7 +11,7 @@ class ClassItem extends React.Component {
         Actions.getClassInfo(1)
     }
     render() {
-        const { classDetail } = this.props
+        const { classDetail } = this.props 
         const item = classDetail.Item
         return (
             <div>
@@ -23,7 +23,7 @@ class ClassItem extends React.Component {
             </div>
         )
     }
-}// .classDetail.Item.real_teacher.name {item.virtual_teacher.id} 
+}// .classDetail.Item.real_teacher.name {item.virtual_teacher.id}  
 
 function mapStateToProps(state) {
     const { classDetail } = state;
