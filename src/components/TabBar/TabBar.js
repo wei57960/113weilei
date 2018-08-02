@@ -1,31 +1,31 @@
 import React from 'react'
 import './TabBar.css'
-import { Tabs } from 'antd'
+import { Tabs, Table } from 'antd'
+import { Link } from 'react-router'
 import ButtonBox from '../ButtonBox/ButtonBox'
 import Tables from '../Tables/Tables'
+import * as Columns from '../../const/Columns'
 const TabPane = Tabs.TabPane;
-
 function callback(key) {
-    console.log(key)
+    // console.log(key)
 }
 
 export default class TabBar extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
     render() {
-        const { tableList } = this.props;
+        const { tableList, router } = this.props;
         return (
             <div className='tab-bar-top'>
                 <div className='tab-bar'>
                     <Tabs defaultActiveKey="1" onChange={callback}>
                         <TabPane tab='课程信息' key='1'>
-                            {/* <div className='sel-btn'><Button ><strong>课程信息</strong></Button></div> */}
-                            <ButtonBox />
-                            <Tables learningCourse={tableList.learningCourse} dataSource={tableList.dataSource} columns={tableList.columns} />
+                            <ButtonBox router={router} />
+                            <Link to='/classdetail'>
+                                <Tables learningCourse={tableList.learningCourse} dataSource={tableList.dataSource} />
+                            </Link>
                         </TabPane>
-                        <TabPane tab='课程信息' key='2'>
+                        <TabPane tab='满意度反馈' key='2'>
+                            <ButtonBox router={router}/>
+                            <Table dataSource={tableList.satisfiledList} columns={Columns.satisfiledList} />
                         </TabPane>
                     </Tabs>
                 </div>

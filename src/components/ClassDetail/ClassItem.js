@@ -3,7 +3,8 @@ import { Table } from 'antd'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import * as actionCreators from '../../actions';
-
+import * as Columns from '../../const/Columns'
+import './ClassItem.css'
 class ClassItem extends React.Component {
     componentDidMount() {
         const { Actions } = this.props;
@@ -11,12 +12,18 @@ class ClassItem extends React.Component {
     }
     render() {
         const { classDetail } = this.props
-        console.log(classDetail+'1111111111111')
+        const item = classDetail.Item
         return (
-            <Table dataSource={classDetail.Detail} columns={classDetail.columns} />
+            <div>
+                <div className='headerText'>
+                    班级：{item.name} 班级ID:{item.id}
+                    老师：负责员工：
+                </div>
+                <Table dataSource={classDetail.Detail} columns={Columns.classDetailColums} />
+            </div>
         )
     }
-}
+}// .classDetail.Item.real_teacher.name {item.virtual_teacher.id} 
 
 function mapStateToProps(state) {
     const { classDetail } = state;

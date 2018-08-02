@@ -1,0 +1,17 @@
+.icon{
+    font-weight: bolder;
+}
+
+.iconClose{
+    font-weight: bolder;
+    color: red;
+}
+
+.failFont{
+    font-weight: bolder;
+    color: red;
+}
+
+.no-text{
+    margin-left: 2em;
+}

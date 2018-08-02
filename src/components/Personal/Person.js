@@ -5,18 +5,18 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../actions';
 import { connect } from 'react-redux'
 import './Personal.css'
+
 class Person extends React.Component {
-    componentWillMount() {
+    componentDidMount() {
         const { Actions } = this.props;
         Actions.getStudentList()
-        // Actions.getClassInfo(1)
     }
     render() {
-        const { studentList } = this.props
+        const { studentList ,Actions} = this.props
         return (
-            <div className='studentList'>             
-                <Headers/>         
-                <StudentsTables studentList={studentList}/>
+            <div className='studentList'>
+                <Headers Actions={Actions}/>
+                <StudentsTables studentList={studentList} />
             </div>
         )
     }
@@ -24,7 +24,7 @@ class Person extends React.Component {
 
 function mapStateToProps(state) {
     const { studentList } = state;
-    return { studentList };
+    return { studentList  };
 }
 
 const mapDispatchToProps = dispatch => {

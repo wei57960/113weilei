@@ -2,16 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {BrowserRouter,Route} from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker';
-import Personal from './container/Personal';
-import ClassDetail from './container/ClassDetail'
+import Container from './container/Container';
+import { Provider } from "react-redux";
+import configureStore from './store/configureStore';
+import { Router, browserHistory } from 'react-router'
+import Person from './components/Personal/Person';
+import ClassItem from './components/ClassDetail/ClassItem';
+
+const store = configureStore();
+const routes = [{
+    path: '/',
+    component: App,
+    indexRoute: { component: Person },
+    childRoutes: [
+        { path: 'students', component: Container },
+        { path: 'classdetail', component: ClassItem }
+    ]
+}]
+
 ReactDOM.render(
-    <BrowserRouter>
-    <div>
-        <Route path="/" exact component={App}/>
-        <Route path='/person' component={Personal}/>
-        <Route path='/class' component={ClassDetail}/>
-    </div>
-    </BrowserRouter>, document.getElementById('root'));
+    <Provider store={store}>
+        <Router routes={routes} history={browserHistory} />
+    </Provider>, document.getElementById('root'));
 registerServiceWorker();

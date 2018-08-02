@@ -1,44 +1,9 @@
 import * as ActionTypes from '../const/ActionTypes'
-import React from 'react'
-import { Avatar} from 'antd';
+
 const defaultStudentMsgs = {
     studentList: [],
-    columns: [
-        {
-            title: '',
-            dataIndex: 'hurl',
-            key: 'hurl',
-            render: (text) => {
-                return (<Avatar shape="square" style={{ width: '50px', height: '50px' }} src={text} />)
-            }
-        },
-        {
-            title: '学员名',
-            dataIndex: 'mid',
-            key: 'mid',
-        }, {
-            title: '学员编号/MID',
-            dataIndex: 'nick',
-            key: 'nick',
-        }, {
-            title: '入学时间',
-            dataIndex: 'enter_time',
-            key: 'enter_time',
-        }, {
-            title: '开课时间',
-            dataIndex: 'start_time',
-            key: 'start_time',
-        }, {
-            title: '在学课程',
-            dataIndex: 'learning_lessons',
-            key: 'learning_lessons',
-        }, {
-            title: '负责老师',
-            dataIndex: 'teachers',
-            key: 'teachers',
-        },
-    ]
-
+    searchNumber: {},
+    newstudentList: []
 }
 
 export default function studentList(state = defaultStudentMsgs, action) {
@@ -61,7 +26,18 @@ export default function studentList(state = defaultStudentMsgs, action) {
             )
             return { ...state, studentList: newa }
         }
+        case `${ActionTypes.GET_DETAIL_BY_ID}`: {
+            let a = state.studentList.slice()
+            let b = state.newstudentList.slice()
 
+            let newa = a.filter((item, index) => {
+                if (item.mid == action.mid) {
+                    return item
+                }
+            })
+            b = newa
+            return { ...state, studentList: b }
+        }
         default:
             return state
     }

@@ -38,9 +38,28 @@ export function getClassInfo(id) {
     SERVER_API: {
       type: ActionTypes.GET_CLASS_INFO,
       endpoint: '/getClassInfo',
-      params:{
+      params: {
         id
       }
     }
   }
-} 
+}
+
+export function getSatisfiledList(mid) {
+  return {
+    SERVER_API: {
+      type: ActionTypes.GET_SATI_LIST,
+      endpoint: '/getSatisfiledList',
+      params: {
+        mid
+      }
+    }
+  }
+}
+
+export function getDetailByMid(mid) {
+  return {
+    type: ActionTypes.GET_DETAIL_BY_ID,
+    mid
+  }
+}

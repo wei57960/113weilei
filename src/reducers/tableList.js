@@ -1,96 +1,11 @@
-import React from 'react'
-import { Icon } from 'antd'
 import './index.css'
 import * as ActionTypes from '../const/ActionTypes'
-function handleNumbers(text, type) {
-    if (type === 'f') {
-        let num1 = parseInt(text.split("/")[0], 10);
-        let num2 = parseInt(text.split("/")[1], 10);
-        const num = num1 / num2
-        if (num < 0.8) {
-            return <span className='Red'>{text}</span>
-        } else if (num > 0.95) {
-            return <span className='Orange'>{text}</span>
-        } else {
-            return <span>{text}</span>
-        }
-    }
-    else if (type === 'p') {
-        if (text < 0.8) {
-            return <span className='Red'>{(text * 100).toFixed(2) + '%'}</span>
-        } else if (text > 0.95) {
-            return <span className='Orange'>{(text * 100).toFixed(2) + '%'}</span>
-        } else {
-            return <span>{(text * 100).toFixed(2) + '%'}</span>
-        }
-    }
-}
-
 const defaultMsgs = {
     learningCourse: [
     ],
     dataSource: [
     ],
-    columns: [{
-        title: '班级',
-        dataIndex: 'className',
-        key: 'className',
-        render: (text) => {
-            return (<span> <Icon type="exclamation-circle" />{text}</span>)
-        }
-    }, {
-        title: '课程状态',
-        dataIndex: 'status',
-        key: 'status',
-    }, {
-        title: '开课时间',
-        dataIndex: 'startTime',
-        key: 'startTime',
-    }, {
-        title: '老师',
-        dataIndex: 'nick',
-        key: 'nick',
-        render: (text) => {
-            return (<span><Icon type="user" />{text}</span>)
-        }
-    }, {
-        title: '上课率',
-        dataIndex: 'enterRate',
-        key: 'enterRate',
-        render: (text) => {
-            return handleNumbers(text, 'f')
-        }
-
-    }, {
-        title: '作业提交率',
-        dataIndex: 'homeworkSubmitRate',
-        key: 'homeworkSubmitRate',
-        render: text => {
-            return handleNumbers(text,'p')
-        }
-    }, {
-        title: '被点评情况',
-        dataIndex: 'beCommenttedRate',
-        key: 'beCommenttedRate',
-        render: text => {
-            return handleNumbers(text,'p')
-        }
-    }, {
-        title: '打卡率',
-        dataIndex: 'signRate',
-        key: 'signRate',
-        render: text => {
-            return handleNumbers(text,'f')
-
-        }
-    }, {
-        title: '满意度',
-        dataIndex: 'satisfyRate',
-        key: 'satisfyRate',
-        render: text => {
-            return handleNumbers(text,'p')
-        }
-    },]
+    satisfiledList: []
 }
 
 export default function tableList(state = defaultMsgs, action) {
@@ -131,6 +46,25 @@ export default function tableList(state = defaultMsgs, action) {
             })
             return { ...state, learningCourse: newa, dataSource: newb }
         }
+
+        case `${ActionTypes.GET_SATI_LIST}_SUC`: {
+            let satisfiledList = state.satisfiledList.slice();
+            satisfiledList = action.response.data.list
+            let newsatisfiledList = satisfiledList.map((item, index) => {
+                return {
+                    key: index + 1,
+                    course_name: item.course_name,
+                    time: item.time,
+                    nick: item.teacher_info.nick,
+                    satisfied_score: item.satisfied_score,
+                    satisfied_detail: item.satisfied_detail,
+                    reply_status: item.reply_status ? '已回复' : '待回复'
+                }
+            }
+            )
+            return { ...state, satisfiledList: newsatisfiledList }
+        }
+
         default:
             return state
     }

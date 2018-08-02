@@ -1,6 +1,23 @@
 import React from 'react'
-import { Button, Input, Menu } from 'antd'
+import { Button, Input } from 'antd'
 export default class Headers extends React.Component {
+    constructor(props) {
+        super(props)
+
+    }
+    state = {
+        inputValue: ''
+    }
+
+    handleInputChange = e => {
+        this.setState({
+            inputValue: e.target.value
+        })
+    }
+    handleSearch = () => {
+        const { Actions } = this.props
+        Actions.getDetailByMid(this.state.inputValue)
+    }
     render() {
         return (
             <div className='btn-box'>
@@ -11,10 +28,11 @@ export default class Headers extends React.Component {
                 </div>
                 <div className='rig-btn'>
                     <Button>mid</Button>
-                    <Input style={{ width: 300 }} placeholder="Basic usage" />
-                    <Button>搜索</Button>
+                    <Input style={{ width: 300 }} placeholder="Basic usage" onChange={this.handleInputChange} />
+                    <Button onClick={this.handleSearch}>搜索</Button>
                 </div>
             </div>
         )
     }
+
 }
