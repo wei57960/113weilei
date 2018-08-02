@@ -19,7 +19,7 @@ export default class TabBar extends React.Component {
                     <Tabs defaultActiveKey="1" onChange={callback}>
                         <TabPane tab='课程信息' key='1'>
                             <ButtonBox router={router} />
-                            <Link to='/classdetail'>
+                            <Link to='/classdetail/12期高级班'>
                                 <Tables learningCourse={tableList.learningCourse} dataSource={tableList.dataSource} />
                             </Link>
                         </TabPane>

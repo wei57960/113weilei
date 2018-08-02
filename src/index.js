@@ -16,8 +16,8 @@ const routes = [{
     component: App,
     indexRoute: { component: Person },
     childRoutes: [
-        { path: 'students', component: Container },
-        { path: 'classdetail', component: ClassItem }
+        { path: 'students/:mid', component: Container },
+        { path: 'classdetail/:className', component: ClassItem }
     ]
 }]
 
