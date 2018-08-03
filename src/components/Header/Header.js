@@ -4,7 +4,6 @@ import { Input } from 'antd';
 import { Icon } from 'antd'
 import './Header.css'
 export default class Header extends React.Component {
-    
     render() {
         const {item} = this.props;
         return (

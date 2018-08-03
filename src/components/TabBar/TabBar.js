@@ -1,14 +1,13 @@
 import React from 'react'
 import './TabBar.css'
 import { Tabs, Table } from 'antd'
-import { Link } from 'react-router'
 import ButtonBox from '../ButtonBox/ButtonBox'
 import Tables from '../Tables/Tables'
 import * as Columns from '../../const/Columns'
 const TabPane = Tabs.TabPane;
-function callback(key) {
-    // console.log(key)
-}
+// function callback(key) {
+//     // console.log(key) onChange={callback}
+// }
 
 export default class TabBar extends React.Component {
     render() {
@@ -16,15 +15,13 @@ export default class TabBar extends React.Component {
         return (
             <div className='tab-bar-top'>
                 <div className='tab-bar'>
-                    <Tabs defaultActiveKey="1" onChange={callback}>
+                    <Tabs defaultActiveKey="1" >
                         <TabPane tab='课程信息' key='1'>
                             <ButtonBox router={router} />
-                            <Link to='/classdetail/12th'>
-                                <Tables learningCourse={tableList.learningCourse} dataSource={tableList.dataSource} />
-                            </Link>
+                            <Tables learningCourse={tableList.learningCourse} dataSource={tableList.dataSource} />
                         </TabPane>
                         <TabPane tab='满意度反馈' key='2'>
-                            <ButtonBox router={router}/>
+                            <ButtonBox router={router} />
                             <Table dataSource={tableList.satisfiledList} columns={Columns.satisfiledList} />
                         </TabPane>
                     </Tabs>

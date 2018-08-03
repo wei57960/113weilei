@@ -40,7 +40,7 @@ export default store => next => action => {
   }
   // if (typeof params !== 'object') {
   //   throw new Error('params shoudle be a object');
-  // }
+  // }  
 
   next({
     type: `${type}_REQ`
