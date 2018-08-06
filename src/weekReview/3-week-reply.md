@@ -1,7 +1,7 @@
 axios:
       向后端请求数据，get/post方式, 请求url, headers,参数
 异步action
-      经过中间件的action    
+      经过中间件进行异步处理的action    
 中间件:
       特点：可插拔 可无限延展 前后可依赖
       创建中间件,插入中间件,中间件编写

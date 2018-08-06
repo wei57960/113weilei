@@ -15,6 +15,7 @@ const deaultClassDetail = {
 export default function classDetail(state = deaultClassDetail, action) {
     switch (action.type) {
         case `${ActionTypes.GET_CLASS_INFO}_SUC`: {
+            console.log(action.response.data)
             let a = action.response.data.basic_info
             state.Item.name = a.name,
                 state.Item.id = a.id,

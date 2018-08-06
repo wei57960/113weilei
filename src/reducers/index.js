@@ -1,12 +1,19 @@
-import { combineReducers } from 'redux';
-import headerList from './headerList'
-import tableList from './tableList'
-import studentList from './studentList'
-import classDetail from './classDetail'
+import { combineReducers } from 'redux'
+import lessonInfo from './lessonInfo'
+import userInfo from './userInfo'
+import ui from './ui'
+import studentLib from './studentLib'
+import classesDetail from './classesDetail'
+import satisfied from './satisfied'
+import entities from './entities'
 
-export default combineReducers({
-    headerList,
-    tableList,
-    studentList,
-    classDetail
-});
+const rootReducer = combineReducers({
+  entities,
+  lessonInfo,
+  userInfo,
+  studentLib,
+  classesDetail,
+  satisfied,
+  ui
+})
+export default rootReducer

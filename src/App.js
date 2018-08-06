@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Provider } from 'react-redux'
 import './App.css';
+import configureStore from './store/configureStore'
 
-import registerServiceWorker from './registerServiceWorker';
+import { Router, browserHistory } from 'react-router'
+import routes from './routes'
 
-
-export default class App extends React.Component {
+const store = configureStore()
+class App extends Component {
   render() {
-    const { children } = this.props
     return (
-      <div>
-        {children}
-      </div>
+      <Provider store={store}>
+        <Router routes={routes} history={browserHistory} />
+      </Provider>
     );
   }
 }
 
-registerServiceWorker();
+export default App;
