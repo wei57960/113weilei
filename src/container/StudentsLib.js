@@ -12,8 +12,12 @@ class StudentsLib extends Component {
     userActions.fetchStudentList()
   }
   render() {
-    const { studentList, entities } = this.props
-    let student = Object.keys(entities.students)
+    const { studentList, entities, filterOption } = this.props;
+    const Lists = studentList.map(mid => {
+      const student = entities.students[mid]
+      return { ...student }
+    })
+    const newStudentList = getAfterFilterList(Lists, filterOption)
     const options = [
       {
         value: 'mid',
@@ -27,7 +31,7 @@ class StudentsLib extends Component {
     return (
       <div>
         <StudentSearcher options={options} onSearch={userActions.searchStudentListByOption} />
-        <StudentTable list={student} />
+        <StudentTable list={newStudentList} />
       </div>
     )
   }
@@ -49,14 +53,13 @@ const mapStateToProps = (state, ownProps) => {
       list: studentList,
       filterOption
     },
-    students,
     entities
   } = state
   return {
     //studentList: getAfterFilterList(studentList, filterOption),
+    entities,
     studentList,
-    students,
-    entities
+    filterOption
   }
 }
 const mapDispatchToProps = dispatch => {
