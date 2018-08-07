@@ -15,6 +15,6 @@ const routeConfig = {
   ]
 }
 
-// /studentsLib
+// studentsLib
 
 export default routeConfig
