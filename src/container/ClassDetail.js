@@ -14,13 +14,13 @@ class ClassDetail extends Component {
     classActions.fetchClassInfo({ classId })
   }
   render() {
-    const {
-      basicInfo,
+    const { 
+      basicInfo, 
       lessonList
     } = this.props
     return (
       <div>
-        <ClassInfoBox data={basicInfo} />
+        <ClassInfoBox data={basicInfo}/>
         <LessonsTable list={lessonList} />
       </div>
     )
@@ -32,15 +32,12 @@ const mapStateToProps = (state, ownProps) => {
     classesDetail: {
       basicInfo,
       lessonList
-    },
-    entities
+    }
   } = state
   const classId = ownProps.params.classId
   return {
     basicInfo: basicInfo[classId],
-    lessonList: lessonList[classId],
-    entities
-
+    lessonList: lessonList[classId]  
   }
 }
 

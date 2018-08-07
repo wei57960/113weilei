@@ -1,0 +1,52 @@
+.item{ overflow: hidden;
+}
+.img{
+    height:100px;
+    width:100px;
+    margin:5px;
+}
+
+.avatar{
+    height:40px;
+    width:40px;
+}
+
+.comments{
+    width:400px;
+    float: left;
+    height: 300px;
+}
+
+.left-comments{
+    float: left;
+    width:800px;
+    height: 300px;
+    border: #908d8d 2px solid;
+    margin-left:50px;
+}
+
+.comments-item{
+    border: #908d8d 1px solid;
+    height: 60px;
+}
+.student-item{
+    border: #908d8d 1px solid;
+    height: 290px;
+}
+
+.fail-text{
+    color: red;
+}
+
+.comments button{
+float: right;    
+}
+
+.left-float-style{
+    float: left;
+}
+
+.center-text{
+    float:left;
+    width: 600px;
+}

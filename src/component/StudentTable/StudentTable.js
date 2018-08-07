@@ -64,13 +64,17 @@ class StudentTable extends Component {
   }
   
   render() {
-    const { list } = this.props    
+    const { list, entities } = this.props
+    let newList = list.map(id=>{
+      const student = entities.students[id];
+      return {...student};
+    });   
     return (
       <div className="table-wrapper">
         <Table 
           onRow={this.onRow}
           rowKey={record => record.mid} 
-          dataSource={list} 
+          dataSource={newList} 
           columns={columns} 
           pagination={false} 
         />

@@ -4,20 +4,14 @@ import { bindActionCreators } from 'redux'
 import userActions from '../actions/user'
 import StudentTable from '../component/StudentTable/StudentTable'
 import StudentSearcher from '../component/StudentSearcher/StudentSearcher'
-import satisfied from '../reducers/satisfied';
 
 class StudentsLib extends Component {
   componentDidMount() {
     const { userActions } = this.props
     userActions.fetchStudentList()
   }
-  render() {
-    const { studentList, entities, filterOption } = this.props;
-    const Lists = studentList.map(mid => {
-      const student = entities.students[mid]
-      return { ...student }
-    })
-    const newStudentList = getAfterFilterList(Lists, filterOption)
+  render () {
+    const { studentList, userActions, entities } = this.props
     const options = [
       {
         value: 'mid',
@@ -31,7 +25,7 @@ class StudentsLib extends Component {
     return (
       <div>
         <StudentSearcher options={options} onSearch={userActions.searchStudentListByOption} />
-        <StudentTable list={newStudentList} />
+        <StudentTable entities={entities} list={studentList} />
       </div>
     )
   }
@@ -40,16 +34,16 @@ const getAfterFilterList = (list, filter) => {
   if (!filter) return list
   const { keyName, value } = filter
   return list.filter(item => {
-    // console.log(item[keyName], value)
+    console.log(item[keyName], value)
     if (`${item[keyName]}` === value || value === '') {
       return true
     }
     return false
   })
 }
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   const {
-    studentLib: {
+    studentLib: { 
       list: studentList,
       filterOption
     },
@@ -57,8 +51,7 @@ const mapStateToProps = (state, ownProps) => {
   } = state
   return {
     entities,
-    studentList,
-    filterOption
+    studentList: getAfterFilterList(studentList, filterOption)
   }
 }
 const mapDispatchToProps = dispatch => {
