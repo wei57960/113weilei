@@ -67,9 +67,24 @@ function students(state = {}, action) {
   }
 }
 
+function courses(state = {}, action) {
+  switch (action.type) {
+    case `${ActionTypes.FETCH_CLASS_INFO}_SUC`: {
+      const entities = action.response.entities
+      return {
+        ...state,
+        ...entities.courses
+      }
+    }
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   classes,
   teachers,
   satisfiled,
-  students
+  students,
+  courses
 });

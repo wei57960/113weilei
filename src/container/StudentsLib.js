@@ -56,7 +56,6 @@ const mapStateToProps = (state, ownProps) => {
     entities
   } = state
   return {
-    //studentList: getAfterFilterList(studentList, filterOption),
     entities,
     studentList,
     filterOption
