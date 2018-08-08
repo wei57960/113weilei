@@ -1,28 +1,92 @@
 import { combineReducers } from 'redux'
 import ActionTypes from '../const/ActionTypes'
 
-function homeWork(state = [], action) {
+function list(state = {
+  userUnReview: [],
+  userReview: [],
+  allUnreview: [],
+  allReview: []
+}, action) {
   switch (action.type) {
-    case `${ActionTypes.FEACH_HOMEWORK_INFO}_SUC`:
-      const result = action.response.result;
-      // return { ...state, [action.id]: result }
-      return [...result]
+    case `${ActionTypes.FEACH_HOMEWORK_USER_UNREVIEW}_SUC`: {
+      return {
+        ...state,
+        userUnReview: action.response.result
+      }
+    }
+    case `${ActionTypes.FEACH_HOMEWORK_USER_REVIEW}_SUC`: {
+      return {
+        ...state,
+        userReview: action.response.result
+      }
+    }
+    case `${ActionTypes.FEACH_HOMEWORK_ALL_UNREVIEW}_SUC`: {
+      return {
+        ...state,
+        allUnreview: action.response.result
+      }
+    }
+    case `${ActionTypes.FEACH_HOMEWORK_ALL_REVIEW}_SUC`: {
+      return {
+        ...state,
+        allReview: action.response.result
+      }
+    }
     default:
-      return state
+      return state;
   }
 }
 
-function list(state = {}, action) {
+function homeworkList(state = {
+  userUnReview: [],
+  userReview: [],
+  allUnreview: [],
+  allReview: []
+}, action) {
   switch (action.type) {
-    case `${ActionTypes.FEACH_HOMEWORK_INFO}_SUC`:
-      return { ...action.response.entities }
+    case `${ActionTypes.FEACH_HOMEWORK_USER_UNREVIEW}_SUC`: {
+      return {
+        ...state,
+        userUnReview: action.response.entities
+      }
+    }
+    case `${ActionTypes.FEACH_HOMEWORK_USER_REVIEW}_SUC`: {
+      return {
+        ...state,
+        userReview: action.response.entities
+      }
+    }
+    case `${ActionTypes.FEACH_HOMEWORK_ALL_UNREVIEW}_SUC`: {
+      return {
+        ...state,
+        allUnreview: action.response.entities
+      }
+    }
+    case `${ActionTypes.FEACH_HOMEWORK_ALL_REVIEW}_SUC`: {
+      return {
+        ...state,
+        allReview: action.response.entities
+      }
+    }
+    case `${ActionTypes.REJECT_COMMENT}`: {
+      return {
+        ...state, 
+        [action.id]:{
+          ...state[action.id],
+          reson:'回复太简单', 
+          status:'reslove'
+        }
+      }
+    }
     default:
-      return state
+      return state;
   }
 }
+
+
 const homeWorks = combineReducers({
-  homeWork,
-  list
+  list,
+  homeworkList
 })
 
 export default homeWorks

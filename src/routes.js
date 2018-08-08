@@ -11,7 +11,7 @@ const routeConfig = {
     { path: 'studentsLib', component: StudentsLib },
     { path: 'userCenter/:mid', component: UserCenter },
     { path: 'classDetail/:classId', component: ClassDetail },
-    { path: 'homeWork', component: HomeWork }
+    { path: 'homeWork', component: StudentsLib }
   ]
 }
 

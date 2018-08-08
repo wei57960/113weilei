@@ -3,6 +3,8 @@ import './Item.css'
 import { Input } from 'antd';
 import { Switch, Button } from 'antd';
 import Comments from './Comments'
+import { Carousel } from 'antd';
+
 export default class Item extends Component {
     renderStudentInfo() {
         const {
@@ -52,18 +54,19 @@ export default class Item extends Component {
     }
 
     render() {
-        const { item } = this.props
+        const { item, classActions } = this.props
         return (
             <div>
                 <div className='item'>
                     <div className='left-comments'>
-                        <div  >{item.photos.map((i, idex) => {
-                            return <img key={idex} className='img' src={i} alt="图片加载失败" />
-                        })}
-                        </div>
+                        <Carousel autoplay afterChange={onChange}>
+                            {item.photos.map((i, idex) => {
+                                return <div key={idex}><h3><img className='img' src={i} alt='图片加载失败' /></h3></div>
+                            })}
+                        </Carousel>
                         {this.renderStudentInfo()}
                     </div>
-                    <Comments item={item} />
+                    <Comments item={item} classActions={classActions} />
                 </div>
             </div>
         )
@@ -71,5 +74,6 @@ export default class Item extends Component {
 }
 
 function onChange(checked) {
-    console.log(`switch to ${checked}`);
+    // console.log(`switch to ${checked}`);
 }
+

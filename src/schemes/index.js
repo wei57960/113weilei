@@ -27,10 +27,18 @@ const lesson = new schema.Entity('lessons', {
     idAttribute: 'id'
   })
 
-const homework = new schema.Entity('homework', {},
+const comments = new schema.Entity('comments', {},
   { idAttribute: 'id' })
 
+const homework = new schema.Entity('homeworks', {
+  classInfo: classes,
+  comments: [comments],
+  teacherInfo: teacher
+}, { idAttribute: 'id' })
+
+export const COMMENTS = [comments]
 export const HOMEWORK = [homework];
+
 export const LESSONS = [lesson];
 
 export const STUDENTLIST = [student];

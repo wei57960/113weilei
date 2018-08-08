@@ -2,10 +2,10 @@ import { combineReducers } from 'redux'
 import ActionTypes from '../const/ActionTypes'
 
 
-function classes (state = {},action){
-  switch(action.type){
+function classes(state = {}, action) {
+  switch (action.type) {
     case `${ActionTypes.FETCH_LESSON_SATISFIED_INFO}_SUC`: {
-      const entities =  action.response.entities
+      const entities = action.response.entities
       return {
         ...state,
         ...entities.classes
@@ -24,10 +24,10 @@ function classes (state = {},action){
   }
 }
 
-function teachers (state = {},action){
-  switch(action.type){
+function teachers(state = {}, action) {
+  switch (action.type) {
     case `${ActionTypes.FETCH_LESSON_SATISFIED_INFO}_SUC`: {
-      const entities =  action.response.entities
+      const entities = action.response.entities
       return {
         ...state,
         ...entities.teachers
@@ -46,10 +46,10 @@ function teachers (state = {},action){
   }
 }
 
-function satisfiled (state = {},action){
-  switch(action.type){
+function satisfiled(state = {}, action) {
+  switch (action.type) {
     case `${ActionTypes.FETCH_LESSON_SATISFIED_INFO}_SUC`: {
-      const entities =  action.response.entities
+      const entities = action.response.entities
       return {
         ...state,
         ...entities.satisfiled
@@ -57,7 +57,7 @@ function satisfiled (state = {},action){
     }
     case `${ActionTypes.REPLY_USER_FEED_BACK}`: {
       const { time } = action.params
-      
+
       const targetItem = { ...state[time] }
       targetItem.reply_status = 1
 
@@ -69,9 +69,9 @@ function satisfiled (state = {},action){
   }
 }
 
-function lessons (state = {}, action){
-  switch(action.type){
-    case `${ActionTypes.FETCH_LESSON_INFO}_SUC`:{
+function lessons(state = {}, action) {
+  switch (action.type) {
+    case `${ActionTypes.FETCH_LESSON_INFO}_SUC`: {
       const { history, current } = action.response;
 
       return {
@@ -85,8 +85,8 @@ function lessons (state = {}, action){
   }
 }
 
-function students(state = {}, action){
-  switch(action.type){
+function students(state = {}, action) {
+  switch (action.type) {
     case `${ActionTypes.FETCH_STUDENT_LIST}_SUC`: {
       const { entities } = action.response;
       return {
@@ -99,10 +99,47 @@ function students(state = {}, action){
   }
 }
 
+// function homeworks(state = {
+//   userUnReview: [],
+//   userReview: [],
+//   allUnreview: [],
+//   allReview: []
+// }, action) {
+//   switch (action.type) {
+//     case `${ActionTypes.FEACH_HOMEWORK_USER_UNREVIEW}_SUC`: {
+//       return {
+//         ...state,
+//         userUnReview: action.response.result
+//       }
+//     }
+//     case `${ActionTypes.FEACH_HOMEWORK_USER_REVIEW}_SUC`: {
+//       return {
+//         ...state,
+//         userReview: action.response.result
+//       }
+//     }
+//     case `${ActionTypes.FEACH_HOMEWORK_ALL_UNREVIEW}_SUC`: {
+//       return {
+//         ...state,
+//         allUnreview: action.response.result
+//       }
+//     }
+//     case `${ActionTypes.FEACH_HOMEWORK_ALL_REVIEW}_SUC`: {
+//       return {
+//         ...state,
+//         allReview: action.response.result
+//       }
+//     }
+//     default:
+//       return state;
+//   }
+// }
+
 export default combineReducers({
   classes,
   teachers,
   satisfiled,
   students,
-  lessons
+  lessons,
+ // homeworks
 });

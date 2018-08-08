@@ -1,9 +1,10 @@
 .item{ overflow: hidden;
 }
 .img{
-    height:100px;
-    width:100px;
+    height:180px;
+    width:180px;
     margin:5px;
+    text-align: center;
 }
 
 .avatar{
@@ -49,4 +50,14 @@ float: right;
 .center-text{
     float:left;
     width: 600px;
+}
+
+.ant-carousel .slick-slide {
+    text-align: center;
+    overflow: hidden;
+    background: #b5ccf7;
+}
+
+.ant-carousel .slick-slide img{
+    display: inline;
 }

@@ -4,6 +4,7 @@ import AttrSpan from './AttrSpan';
 import './SatisfiedTable.css'
 
 class SatisfiedTable extends Component { 
+  
   handleReply = (attr) => {
     const {index,record} = attr;
     const { lessonActions, userInfo } = this.props
@@ -13,6 +14,7 @@ class SatisfiedTable extends Component {
       lessonIndex: index
     })
   }
+
   handleStopBubble = e => {
     e.stopPropagation();
   }
