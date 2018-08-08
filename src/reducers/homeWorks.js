@@ -68,16 +68,7 @@ function homeworkList(state = {
         allReview: action.response.entities
       }
     }
-    case `${ActionTypes.REJECT_COMMENT}`: {
-      return {
-        ...state, 
-        [action.id]:{
-          ...state[action.id],
-          reson:'回复太简单', 
-          status:'reslove'
-        }
-      }
-    }
+   
     default:
       return state;
   }

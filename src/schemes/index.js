@@ -18,7 +18,6 @@ const student = new schema.Entity('students', {}, {
   idAttribute: 'mid'
 })
 
-// lesson
 
 const lesson = new schema.Entity('lessons', {
   classInfo: classes,
