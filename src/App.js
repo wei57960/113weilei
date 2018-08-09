@@ -1,20 +1,11 @@
-import React, { Component } from 'react';
-import { Provider } from 'react-redux'
+import React from 'react';
 import './App.css';
-import configureStore from './store/configureStore'
-
-import { Router, browserHistory } from 'react-router'
-import routes from './routes'
-
-const store = configureStore()
-class App extends Component {
+import Container from './container/Container'
+export default class App extends React.Component {
   render() {
     return (
-      <Provider store={store}>
-        <Router routes={routes} history={browserHistory} />
-      </Provider>
+        <Container />
     );
   }
 }
 
-export default App;
