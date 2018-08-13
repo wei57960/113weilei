@@ -26,7 +26,7 @@ function classes(state = {}, action) {
       {
         return {
           ...state,
-          ...action.response.entities.comments
+          ...action.response.entities.classes
         }
       }
     default:
@@ -58,7 +58,7 @@ function teachers(state = {}, action) {
       {
         return {
           ...state,
-          ...action.response.entities.comments
+          ...action.response.entities.teachers
         }
       }
     default:
@@ -145,11 +145,28 @@ function comments(state = {}, action) {
   }
 }
 
+function homeworks(state = {}, action) {
+  switch (action.type) {
+    case `${ActionTypes.FEACH_HOMEWORK_USER_REVIEW}_SUC`:
+    case `${ActionTypes.FEACH_HOMEWORK_USER_UNREVIEW}_SUC`:
+    case `${ActionTypes.FEACH_HOMEWORK_ALL_REVIEW}_SUC`:
+    case `${ActionTypes.FEACH_HOMEWORK_ALL_UNREVIEW}_SUC`:
+      {
+        return {
+          ...state,
+          ...action.response.entities.homeworks
+        }
+      }
+    default: return state
+  }
+}
+
 export default combineReducers({
   classes,
   teachers,
   satisfiled,
   students,
   lessons,
-  comments
+  comments,
+  homeworks
 });

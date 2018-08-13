@@ -19,7 +19,7 @@ class HomeWork extends Component {
         classActions.feachHomeworkAllReview({ token: 0, isReviewed: 1 })
     }
     render() {
-        const { homeworkList, list, classActions } = this.props;
+        const { list, classActions, entities } = this.props;
         const mapEntities = (ids, entity) => {
             const {
                 classes,
@@ -43,9 +43,9 @@ class HomeWork extends Component {
             })
             return data;
         }
+
         return (
             <div>
-
                 <InputGroup compact >
                     <Select defaultValue="mid">
                         <Option value="mid">根据mid搜索</Option>
@@ -58,16 +58,16 @@ class HomeWork extends Component {
                 </InputGroup>
                 <Tabs tabBarStyle={{ padding: '0 20px' }} defaultActiveKey="1" >
                     <TabPane tab="我的未点评" key='1' >
-                        <ItemList list={mapEntities(list.userUnReview, homeworkList.userUnReview)} classActions={classActions} />
+                        <ItemList list={mapEntities(list.userUnReview, entities)} classActions={classActions} entities={entities} />
                     </TabPane>
                     <TabPane tab="我的点评历史" key='2' >
-                        <ItemList list={mapEntities(list.userReview, homeworkList.userReview)} classActions={classActions} />
+                        <ItemList list={mapEntities(list.userReview, entities)} classActions={classActions} entities={entities} />
                     </TabPane>
                     <TabPane tab="全部未点评" key='3'>
-                        <ItemList list={mapEntities(list.allUnreview, homeworkList.allUnreview)} classActions={classActions} />
+                        <ItemList list={mapEntities(list.allUnreview, entities)} classActions={classActions} entities={entities} />
                     </TabPane>
                     <TabPane tab="全部已点评" key='4'>
-                        <ItemList list={mapEntities(list.allReview, homeworkList.allReview)} classActions={classActions} />
+                        <ItemList list={mapEntities(list.allReview, entities)} classActions={classActions} entities={entities} />
                     </TabPane>
                 </Tabs>
             </div>
@@ -81,12 +81,12 @@ const mapStateToProps = state => {
             homeworkList,
             list
         }
-
+        , entities
     } = state
     return {
         homeworkList,
         list
-
+        , entities
     }
 }
 
@@ -98,4 +98,4 @@ const mapDispatchToProps = dispatch => {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeWork)
+export default connect(mapStateToProps, mapDispatchToProps)(HomeWork)   

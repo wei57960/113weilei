@@ -4,7 +4,7 @@ import { Button } from 'antd'
 
 export default class Item extends Component {
     render() {
-        const { item, classActions } = this.props
+        const { item, classActions, entities } = this.props
         return (
             <div className='comments'>
 
@@ -36,7 +36,8 @@ export default class Item extends Component {
     }
 
     showBackReason = (i) => {
-        const { item } = this.props;
+        const { item, entities } = this.props;
+
         if (item.comments[i].status === 'reject') {
             return <div className='fail-text'>{`(消息被退回,退回原因:${item.comments[1].reason}。)`}<Button size='small' type="primary" onClick={this.handleBack}>退回</Button></div>
         } else {

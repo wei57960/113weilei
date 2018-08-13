@@ -3,15 +3,16 @@ import StudentsLib from './container/StudentsLib';
 import ClassDetail from './container/ClassDetail';
 import AppWrapper from './container/AppWrapper';
 import HomeWork from './container/HomeWork';
+import HomeWorkPower from './container/HomeWorkPower';
 const routeConfig = {
   path: '/',
   component: AppWrapper,
-  indexRoute: { component: HomeWork }, //StudentsLib
+  indexRoute: { component: HomeWorkPower }, //StudentsLib
   childRoutes: [
     { path: 'studentsLib', component: StudentsLib },
     { path: 'userCenter/:mid', component: UserCenter },
     { path: 'classDetail/:classId', component: ClassDetail },
-    { path: 'homeWork', component: StudentsLib }
+    { path: 'homeWork', component: HomeWork }
   ]
 }
 

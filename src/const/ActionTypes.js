@@ -17,4 +17,5 @@ export default {
 
   REJECT_COMMENT: 'REJECT_COMMENT',
 
+  ADD_SELTED_STAFF: 'ADD_SELTED_STAFF',
 }

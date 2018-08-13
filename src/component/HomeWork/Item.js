@@ -54,7 +54,7 @@ export default class Item extends Component {
     }
 
     render() {
-        const { item, classActions } = this.props
+        const { item, classActions, entities } = this.props
         return (
             <div>
                 <div className='item'>
@@ -66,7 +66,7 @@ export default class Item extends Component {
                         </Carousel>
                         {this.renderStudentInfo()}
                     </div>
-                    <Comments item={item} classActions={classActions} />
+                    <Comments item={item} classActions={classActions} entities={entities} />
                 </div>
             </div>
         )
