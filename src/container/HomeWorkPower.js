@@ -8,7 +8,7 @@ import powerActions from '../actions/homeworkPower'
 import { bindActionCreators } from 'redux';
 class HomeWorkPower extends React.Component {
     render() {
-        const { powerDetail, powerDepartment, powerActions, bloc, person, filterOption } = this.props
+        const { powerDetail, powerActions, bloc, person, filterOption } = this.props
         return (
             <div>
                 <PowerBar data={powerDetail} />
@@ -24,7 +24,6 @@ const mapStateToProps = (state, ownProps) => {
     const {
         homeworkPower: {
             powerDetail,
-            powerDepartment,
             bloc,
             person,
             filterOption
@@ -32,7 +31,6 @@ const mapStateToProps = (state, ownProps) => {
     } = state
     return {
         powerDetail,
-        powerDepartment,
         bloc,
         person,
         filterOption

@@ -55,7 +55,7 @@ export default class DepartmentStaff extends React.Component {
                     style={{ width: '250px' }}
                 />
                 {this.showStaff(bloc, person, powerDetail)}
-                <Button onClick={this.commitSelted} style={{ top: '420px', position: 'fixed', margin: '10px' }} size='default'>确认</Button>
+                <Button onClick={this.commitSelted} style={{ top: '420px', position: 'fixed'}} size='default'>确认</Button>
             </div>
         )
     }

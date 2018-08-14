@@ -9,8 +9,9 @@ const defaultMsg = {
     seltedStaff: [], //点击树选择出的员工
     blocResult: [0],
     blockStaff: [],//部门员工
-    toPowerStaff: [], //点击的员工
-    powerStaff: [] //左侧添加权限的员工
+    toPowerStaff: [], //选中的员工
+    powerStaff: [], //左侧添加权限的员工
+    selDelStaff: [] //选中的删除员工
 }
 
 function powerDetail(state = defaultMsg, action) {
@@ -41,6 +42,40 @@ function powerDetail(state = defaultMsg, action) {
             const newToPowerStaff = state.toPowerStaff
             let newPowerStaff = state.powerStaff
             newPowerStaff = newToPowerStaff
+            return {
+                ...state, powerStaff: newPowerStaff
+            }
+        }
+        case `${ActionTypes.ADD_DELETE_STAFF}`: {
+            const newSelDelStaff = state.selDelStaff
+
+            if (newSelDelStaff.length > 0) {
+                for (let i = 0; i < newSelDelStaff.length; i++) {
+                    if (newSelDelStaff[i].id === action.data.id) {
+                        newSelDelStaff.splice(i, 1)
+                    }
+                }
+                newSelDelStaff.push(action.data)
+            }
+            if (newSelDelStaff.length == 0) {
+                newSelDelStaff.push(action.data)
+            }
+            console.log(newSelDelStaff)
+            return {
+                ...state, selDelStaff: newSelDelStaff
+            }
+        }
+        case `${ActionTypes.DELETE_STAFF}`: {
+            const newPowerStaff = state.powerStaff.slice()
+            const newSelDelStaff = state.selDelStaff.slice()
+
+            if (newSelDelStaff.length > 0) {
+                for (let i = 0; i < newSelDelStaff.length; i++) {
+                    if (newPowerStaff[i].id === newSelDelStaff[i].id) {
+                        newPowerStaff.splice(i, 1)
+                    }
+                }
+            }
             return {
                 ...state, powerStaff: newPowerStaff
             }
@@ -81,25 +116,16 @@ function person(state = {
 
 function filterOption(state = null, action) {
     switch (action.type) {
-      case `${ActionTypes.SEARCH_STAFF_LIST_BY_OPTION}`:
-        return action.params
-      default:
-        return state
-    }
-}
-  
-function powerDepartment(state = defaultMsg, action) {
-    switch (action.type) {
-      
-        default: {
+        case `${ActionTypes.SEARCH_STAFF_LIST_BY_OPTION}`:
+            return action.params
+        default:
             return state
-        }
     }
 }
 
+
 const homeworkPower = combineReducers({
     powerDetail,
-    powerDepartment,
     bloc,
     person,
     filterOption

@@ -8,6 +8,15 @@ export default class HandleStaffPower extends React.Component {
         powerActions.searchStaffListByOption({ keyName: 'name', value: value })
     }
 
+    addDeleteStaff = (i) => {
+        const { powerActions } = this.props;
+        powerActions.addDelStaff(i)
+    }
+
+    deleteStaff = () => {
+        const { powerActions } = this.props;
+        powerActions.deleteStaff()
+    }
     render() {
         const Search = Input.Search;
         const { data: { powerStaff: powerStaff }, filterOption, powerActions } = this.props
@@ -20,7 +29,7 @@ export default class HandleStaffPower extends React.Component {
                 </div>
                 <div className='lef'>
                     <Button style={{ margin: '10px' }} size='default'>添加</Button>
-                    <Button style={{ margin: '10px' }} size='default'>删除</Button>
+                    <Button onClick={this.deleteStaff} style={{ margin: '10px' }} size='default' >删除</Button>
                     <Search
                         placeholder="请输入姓名"
                         enterButton="搜索"
@@ -31,7 +40,7 @@ export default class HandleStaffPower extends React.Component {
                     <div>
                         {newPowerStaff.map((i, index) => {
                             return <div key={index}>
-                                <Button style={{ margin: '10px' }} size='default'>
+                                <Button onClick={this.addDeleteStaff.bind(this,i)} style={{ margin: '10px' }} size='default'>
                                     <span>mid:{i.id}</span>
                                     <span>姓名:{i.name}</span>
                                 </Button>

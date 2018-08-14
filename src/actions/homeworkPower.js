@@ -27,7 +27,15 @@ export default {
 
         }
     },
-    deleteStaff: {
-       
+    addDelStaff(data) {
+        return {
+            type: ActionTypes.ADD_DELETE_STAFF,
+            data
+        }
+    },
+    deleteStaff() {
+        return {
+            type: ActionTypes.DELETE_STAFF,
+        }
     }
 }

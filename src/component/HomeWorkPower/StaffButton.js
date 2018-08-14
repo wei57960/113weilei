@@ -9,7 +9,7 @@ export default class StaffButton extends React.Component {
 
     getClassName = () => {
         if (this.state.class == '') {
-            this.setState({ class: 'sel-btn' })
+            this.setState({ class: 'primary' })
         }
         else {
             this.setState({ class: '' })
@@ -25,10 +25,9 @@ export default class StaffButton extends React.Component {
 
     render() {
         const { item } = this.props;
-        console.log(item)
         return (
             <div >
-                <Button className={this.state.class} onClick={this.addToPower} size='default'>
+                <Button  type={this.state.class} onClick={this.addToPower} size='default'>
                     <span >mid:{item.id}</span>
                     <span >姓名:{item.name}</span>
                 </Button>
