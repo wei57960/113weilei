@@ -17,6 +17,7 @@
 .depart{
   float: left;
   width:25%;
+  border: #908d8d 2px solid;
 }
 
 .lef{
@@ -25,6 +26,19 @@
 }
 
 .rig{
-  float: left;
-   
+  float: left;  
+}
+
+.unsel-btn{
+  margin: '10px' 
+}
+
+.sel-btn{
+  background-color: darkgray;
+  margin: '10px' 
+}
+
+.powerbar{
+  border: #908d8d 2px solid;
+  margin:10px;
 }

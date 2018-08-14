@@ -13,16 +13,17 @@ class StudentSearcher extends Component {
       currentOptionValue: options[0].value
     }
   }
-  
+
   onSearch = value => {
     const { onSearch } = this.props
     const { currentOptionValue } = this.state
     console.log(value)
     onSearch({
-      keyName: currentOptionValue, 
+      keyName: currentOptionValue,
       value
     })
   }
+
   handleChange = value => {
     this.setState({
       currentOptionValue: value
@@ -34,7 +35,7 @@ class StudentSearcher extends Component {
       <div className="searcher-wrapper">
         <InputGroup compact>
           <Select defaultValue={this.state.currentOptionValue} onChange={this.handleChange}>
-            { options.map(item => <Option key={item.value} value={item.value}>{item.text}</Option>) }
+            {options.map(item => <Option key={item.value} value={item.value}>{item.text}</Option>)}
           </Select>
           <Search
             style={{ width: 200 }}
