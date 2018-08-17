@@ -45,15 +45,19 @@ const serverApi = () => next => action => {
   }
 
   const { normailzerFun } = action.SERVER_API;
+
   function actionWith(data) {
     const finalAction = { ...action, ...data };
     delete finalAction.SERVER_API;
     return finalAction;
   }
+
   next(actionWith({
     type: `${type}_REQ`,
     __api:{endpoint,params},
   }));
+
+
   callServerApi({ endpoint, params })
     .then(res => {
       const response = typeof (normailzerFun) !== 'undefined' ? normailzerFun(res.data) : res.data;
@@ -71,6 +75,7 @@ const serverApi = () => next => action => {
         errMsg
       }));
     });
+    
 }
 
 
