@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
+import { createLogger } from 'redux-logger';
 
 
 /* eslint-disable no-underscore-dangle */
@@ -14,6 +15,10 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 
 const preloadedState = {};
+const logger = createLogger({
+  duration: true,
+  diff: false
+});
 
 try {
   let bestScore = localStorage.getItem('bestScore');
@@ -24,7 +29,7 @@ try {
 } catch(e){}
 
 const store = createStore(rootReducer, preloadedState, composeEnhancers(
-  applyMiddleware(thunk)
+  applyMiddleware(thunk,logger)
 ));
 
 ReactDOM.render(

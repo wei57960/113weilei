@@ -4,21 +4,9 @@ import Swipeable from 'react-swipeable';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { deepEach } from '../utils';
-// import PropTypes from 'prop-types';
 
 class Game extends Component {
-  // static propTypes = {
-  //   startNewGame: PropTypes.func.isRequired,
-  //   setGameOver: PropTypes.func.isRequired,
-  //   generateNewTile: PropTypes.func.isRequired,
-  //   moveChessBoard: PropTypes.func.isRequired,
-  //   addScore: PropTypes.func.isRequired,
-  //   updateBestScore: PropTypes.func.isRequired,
-  //   gameStarted: PropTypes.bool.isRequired,
-  //   size: PropTypes.number.isRequired,
-  //   tiles: PropTypes.array.isRequired,
-  //   score: PropTypes.number.isRequired
-  // };
+
 
   componentDidMount () {
     this.props.startNewGame();
