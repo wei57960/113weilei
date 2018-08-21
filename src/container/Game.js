@@ -53,9 +53,7 @@ class Game extends Component {
   isMovable () {
     let movable = false;
     let { tiles, size } = this.props;
-    // check each tile,
-    // if there is any empty tile, sets movable to true
-    // if there is any adjacent tile which has the same number, sets movable to true
+    // 检查每个格子 如果有任意空格则为true 如果有相邻的相同的数则为true
     deepEach(tiles, tile => {
       if (movable) return; // break;
       if (!tile) {
@@ -84,8 +82,7 @@ class Game extends Component {
   }
 
   checkGameStatus () {
-    if (!this.isMovable()) {
-      // game over
+    if (!this.isMovable()) {  //游戏结束
       this.props.gameActions.updateBestScore(this.props.score);
       this.props.gameActions.setGameOver();
     }

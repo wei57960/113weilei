@@ -1,6 +1,5 @@
 import React from 'react';
 import * as actions from '../actions';
-// import flatten from 'lodash.flatten';
 import { connect } from 'react-redux';
 import './Tiles.css';
 
@@ -25,8 +24,6 @@ let Tile = (props) => {
     </div>
   );
 };
-
-
 
 const mapDispatchToTileProps = (dispatch, ownProps) => {
   return {

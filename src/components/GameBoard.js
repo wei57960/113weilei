@@ -29,7 +29,5 @@ const GameBoard = (props) => (
   </div>
 );
 
-
-
 export default GameBoard;
 
