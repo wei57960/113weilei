@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { cleanRecentAddedScore, startNewGame } from '../actions';
 import './HeaderBox.css';
 
 const ScoreBox = ({ label, score, children }) => {
@@ -18,16 +16,16 @@ const HeaderBox = (props) => {
   return (
     <div className="header-box">
       <h1 className="title">2048</h1>
-      <ScoreBox score={props.score} label="SCORE">
+      <ScoreBox score={props.scores.score} label="SCORE">
       {
-        props.recentAddedScores.map((score) =>
+        props.scores.recentAddedScores.map((score) =>
           <div className="addition-score" key={score.id}
-            onAnimationEnd={(e) => props.onAnimationEnd(score.id)}
+            onAnimationEnd={(e) => props.gameActions.cleanRecentAddedScore(score.id)}
           >+{score.score}</div>
         )
       }
       </ScoreBox>
-      <ScoreBox score={props.bestScore} label="BEST" />
+      <ScoreBox score={props.scores.bestScore} label="BEST" />
       <div className="desc-txt">
         <span>Keypressing up down left right on PC</span><br/>
         Touch moving on Phone! Join it & have fun! 
@@ -37,17 +35,5 @@ const HeaderBox = (props) => {
   );
 };
 
+export default HeaderBox;
 
-const mapStateToProps = ({scores}) => scores;
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onAnimationEnd: id => dispatch(cleanRecentAddedScore(id)),
-    startNewGame: () => dispatch(startNewGame())
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HeaderBox);

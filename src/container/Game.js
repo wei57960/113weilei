@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import GameBoard from './GameBoard';
+import GameBoard from '../components/GameBoard';
 import Swipeable from 'react-swipeable';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { deepEach } from '../utils';
+import { bindActionCreators } from 'redux';
+import flatten from 'lodash.flatten';
 
 class Game extends Component {
-
-
   componentDidMount () {
-    this.props.startNewGame();
+    this.props.gameActions.startNewGame();
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleSwiped = this.handleSwiped.bind(this);
     window.addEventListener('keydown', this.handleKeyPress);
@@ -38,13 +38,13 @@ class Game extends Component {
 
   move (dir) {
     if (this.isMoving) return;
-    let {movingPromise, score} = this.props.moveChessBoard(dir);
+    let {movingPromise, score} = this.props.gameActions.moveChessBoard(dir);
     if (movingPromise) {
       this.isMoving = true;
       movingPromise.then(() => {
-        score && this.props.addScore(score);
+        score && this.props.gameActions.addScore(score);
         this.isMoving = false;
-        this.props.generateNewTile();
+        this.props.gameActions.generateNewTile();
         this.checkGameStatus();
       });
     }
@@ -86,8 +86,8 @@ class Game extends Component {
   checkGameStatus () {
     if (!this.isMovable()) {
       // game over
-      this.props.updateBestScore(this.props.score);
-      this.props.setGameOver();
+      this.props.gameActions.updateBestScore(this.props.score);
+      this.props.gameActions.setGameOver();
     }
   }
 
@@ -99,29 +99,39 @@ class Game extends Component {
     }, {});
 
     return  <Swipeable {...swipeOptions} preventDefaultTouchmoveEvent>
-      <GameBoard />
+      <GameBoard size={this.props.size} gameOver={this.props.gameOver}
+      flatTiles={this.props.flatTiles} scores={this.props.scores}
+       gameActions={this.props.gameActions}/>
     </Swipeable>;
   }
 }
 
+const flattenTiles = tiles => {
+  let flatTiles = [];
+  flatten(tiles).filter(tile => !!tile).forEach(tile => {
+    flatTiles.push(tile);
+    if (tile.tileToMerge) {
+      flatTiles.push(tile.tileToMerge);
+    }
+  });
+  return flatTiles.sort((tile1, tile2) => tile1.uuid > tile2.uuid ? 1 : -1);
+};
 
 const mapStateToProps = (state) => {
   return {
     size: state.size,
     tiles: state.tiles,
     score: state.scores.score,
-    gameStarted: state.gameStatus === 'playing'
+    gameStarted: state.gameStatus === 'playing',
+    gameOver: state.gameStatus === 'over',
+    scores: state.scores,
+    flatTiles: flattenTiles(state.tiles)
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    startNewGame: () => dispatch(actions.startNewGame()),
-    setGameOver: () => dispatch(actions.setGameOver()),
-    generateNewTile: () => dispatch(actions.generateNewTile()),
-    moveChessBoard: dir => dispatch(actions.moveChessBoard(dir)),
-    addScore: score => dispatch(actions.addScore(score)),
-    updateBestScore: score => dispatch(actions.updateBestScore(score))
+    gameActions:bindActionCreators(actions,dispatch)
   };
 };
 

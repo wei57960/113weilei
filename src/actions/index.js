@@ -33,7 +33,7 @@ export const moveChessBoard = (dir) => (dispatch, getState) => {
     for (let j = 0; j < size; j++) {
       let row = i, col = j;
       if (dir === 'right') {
-        // reverse col to get right-to-left iteration    向右移动 +1  (0,0)col = 4-0-1=3
+        // reverse col to get right-to-left iteration      (0,0) 行0 列col = 4-0-1=3 
         col = size - j - 1;
       }
       if (dir === 'down') {

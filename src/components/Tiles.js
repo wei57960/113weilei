@@ -1,6 +1,6 @@
 import React from 'react';
 import * as actions from '../actions';
-import flatten from 'lodash.flatten';
+// import flatten from 'lodash.flatten';
 import { connect } from 'react-redux';
 import './Tiles.css';
 
@@ -13,7 +13,7 @@ let Tile = (props) => {
     tile: true,
     [`tile-${props.number}`]: true,
     'tile-new': props.newGenerated,
-    'tile-merged': !!props.newMerged
+    'tile-merged': !!props.newMerged 
   };
   let classNames = Object.keys(classMap).filter(cls => !!classMap[cls]).join(' ');
   let x = col * ( TILE_WIDTH + TILE_GAP) + 'px';
@@ -45,29 +45,11 @@ const mapDispatchToTileProps = (dispatch, ownProps) => {
 Tile = connect(null, mapDispatchToTileProps)(Tile);
 
 
-const Tiles = ({flatTiles}) => (
-  <div className="tile-container">{flatTiles.map(tile =>
+ const Tiles = (props) =>{
+  return ( <div className="tile-container">{props.flattenTiles.map(tile =>
     <Tile key={'tile-'+tile.uuid} {...tile}></Tile>
   )}</div>
 );
-
-
-
-const flattenTiles = tiles => {
-  let flatTiles = [];
-  flatten(tiles).filter(tile => !!tile).forEach(tile => {
-    flatTiles.push(tile);
-    if(tile.tileToMerge) {
-      flatTiles.push(tile.tileToMerge);
-    }
-  });
-  return flatTiles.sort((tile1, tile2) => tile1.uuid > tile2.uuid ? 1 : -1);
 };
 
-const mapStateToProps = ({tiles}) => {
-  return {
-    flatTiles: flattenTiles(tiles)
-  };
-};
-
-export default connect(mapStateToProps)(Tiles);
+export default Tiles;

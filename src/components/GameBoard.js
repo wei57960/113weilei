@@ -2,10 +2,9 @@ import React from 'react';
 import HeaderBox from './HeaderBox';
 import GameOver from './GameOver';
 import Tiles from './Tiles';
-import { connect } from 'react-redux';
 import './GameBoard.css';
 
-const BackgroundGrids = ({size}) => {
+const BackgroundGrids = ({ size }) => {
   let row = i => {
     return new Array(size).fill().map((_, j) =>
       <div className="grid-cell" key={`grid-cell-${i * size + j}`}></div>
@@ -21,21 +20,16 @@ const BackgroundGrids = ({size}) => {
 
 const GameBoard = (props) => (
   <div className="game-board">
-    <HeaderBox />
+    <HeaderBox scores={props.scores} gameActions={props.gameActions}/>
     <div className="game-box">
-      <BackgroundGrids size={props.size}/>
-      <Tiles/>
-      {props.gameOver && <GameOver />}
+      <BackgroundGrids size={props.size} />
+      <Tiles flattenTiles={props.flatTiles} />
+      {props.gameOver && <GameOver gameActions={props.gameActions}/>}
     </div>
   </div>
 );
 
 
-const mapStateToProps = state => {
-  return {
-    size: state.size,
-    gameOver: state.gameStatus === 'over'
-  };
-};
 
-export default connect(mapStateToProps)(GameBoard);
+export default GameBoard;
+

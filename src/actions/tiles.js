@@ -40,7 +40,7 @@ export const moveTile = (payload) => (dispatch) => { //移动块 payload:row col
   return sleep(80).then(() => payload);
 };
 
-export const preMergeTile = (payload) => {
+export const preMergeTile = (payload) => {   
   return {
     type: ActionTypes.PRE_MERGE_TILE,
     ...payload

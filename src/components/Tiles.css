@@ -90,7 +90,7 @@
 }
 
 
-@keyframes a-tile-new{
+@keyframes a-tile-new{     
   from{
     transform: scale(0);
   }
