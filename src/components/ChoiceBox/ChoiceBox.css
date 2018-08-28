@@ -1,0 +1,31 @@
+.choice-box{
+    margin-top:0px;
+    height: 40px;
+    width:375px;
+}
+
+.choice-btn{
+    float: left;
+    margin-top:12px;
+    margin-bottom: 4.5px;
+    margin-left: 4px;
+}
+
+input[type='radio']{
+    opacity: 0;
+}
+
+input[type="radio"]+span{
+    
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    border: 7px solid #e5e5e5;
+    vertical-align: middle;
+}
+
+
+input[type="radio"]:checked+span{
+    border: 7px solid #ff2064;
+}

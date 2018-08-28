@@ -1,0 +1,65 @@
+.mask{ 
+    position: fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    background:rgba(0, 0, 0, .6);
+    transition: opacity .3s ease-in;
+}
+
+.showMask{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hideMask {
+    opacity: 0;
+    transform: translateY(100%);
+}
+
+.dialog{
+    position: fixed;
+    width: 300px;
+    top: 275px;
+    height: 106px;
+    left: 37px;
+    background-color: #fff;
+    z-index: 100;
+    color: #000;
+    text-align: center;
+}
+
+.hideDialog{
+    display: none;
+}
+
+.showDialog{
+    transform: translateY(0);
+}
+
+.delete-title{
+    line-height: 100px;
+    vertical-align: middle;
+    border-bottom: 1px solid #e4e4e4;
+    font-size: 2px;
+    background-color: #fff; 
+}
+
+.btn{
+    background-color:  #fff;
+    text-align: center;
+    display: block;
+    width: 50%;
+    float: left;
+    line-height: 40px;
+}
+
+.cancel{
+
+} 
+
+.ok{
+    border-left: 1px solid #e4e4e4;
+    color: rgb(60, 207, 233);
+}

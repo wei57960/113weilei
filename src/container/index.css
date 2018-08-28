@@ -1,0 +1,58 @@
+.navbar{
+    width:375px;
+    height:46px; 
+}
+
+.navbar img{
+    width:10.5px;
+    height:18px;
+    margin-top:16px;
+    margin-left:15.5px;
+    margin-bottom: 12px;
+}
+
+.desc-tile{
+  position: absolute;
+  margin-top:12px;
+  margin-bottom: 12px;
+  color:#ff2064;
+  font-size: 16px;
+  margin-left: 4px;
+}
+
+.name{
+    position: absolute;
+    right: 170px;
+    margin-top: 8px;
+    margin-bottom: 9px;
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+}
+
+.finish-tile{
+    float: right;
+    color:#ff2064;
+    margin-top: 14px;
+    margin-bottom: 9.5px;
+    margin-right:18px;
+}
+
+.choice-bar{
+    width:375px;
+    height:45px; 
+    border-bottom:1px solid #e4e4e4;
+}
+
+
+
+.bar-text{
+    width: 60px;
+    height: 21px;
+}
+
+.choice-bar img{
+    width: 21px;
+    height: 21px;
+}
+

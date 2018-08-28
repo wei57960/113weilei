@@ -1,0 +1,32 @@
+.tab-tile{
+    float:left;
+    margin-left: 24px;
+    margin-top: 9px;
+}
+
+.tab-tile img{
+    width: 21px;
+    height: 21px;
+}
+
+.active{
+    color:#ff2064;  
+}
+
+.tab-item{
+    position: absolute;
+    top:93px;
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+.seled-soild{
+   width:30px;
+   height:4px;
+   color:#ff2064;  
+   border-radius:100px;
+   z-index: 100;
+}
