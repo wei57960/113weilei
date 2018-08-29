@@ -75,7 +75,7 @@ const RenderCutMusicButton = props => {
   }
   if (flag == true) {
     return (
-      <div className="oper-btn">
+      <div className="oper-btn" onClick={props.handleShowInterceptDialog}>
         <img src={require('../../icons/button_cut.png')} alt="" />
         <div>选择片段</div>
       </div>
@@ -174,6 +174,7 @@ const OperationBox = props => (
       selted={props.basicInfo.selted}
       single={props.basicInfo.single}
       entities={props.entities}
+      handleShowInterceptDialog={props.handleShowInterceptDialog}
     />
     <RenderShareButton
       selted={props.basicInfo.selted}

@@ -28,7 +28,7 @@ export default {
         };
       }
     },
-    NEED_TOKEN: {}
+    NEED_TOKEN: '1'
   }),
   fetchCommendMusic: params => ({
     SERVER_API: {
@@ -44,7 +44,7 @@ export default {
         };
       }
     },
-    NEED_TOKEN: {}
+    NEED_TOKEN: '1'
   }),
   setSeltedStatus: data => ({
     type: ActionTypes.SET_SELTED_STATUS,

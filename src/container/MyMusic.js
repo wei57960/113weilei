@@ -6,6 +6,7 @@ import ChoiceBox from '../components/ChoiceBox/ChoiceBox';
 import RenameDialog from '../components/RenameDialog/RenameDialog';
 import DeletionDialog from '../components/DeletionDialog/DeletionDialog';
 import PlayerDialog from '../components/PlayerDialog/PlayerDialog';
+import InterceptDialog from '../components/InterceptDialog/InterceptDialog';
 
 class MyMusic extends React.Component {
   constructor() {
@@ -13,7 +14,8 @@ class MyMusic extends React.Component {
     this.state = {
       isDeletionDialogActive: false,
       isRenameDialogActive: false,
-      isPlayerDialogActive: false
+      isPlayerDialogActive: false,
+      isInterceptDialogActive: false
     };
   }
 
@@ -32,11 +34,17 @@ class MyMusic extends React.Component {
       isPlayerDialogActive: true
     });
   }
+  handleShowInterceptDialog =() => {
+    this.setState({
+      isInterceptDialogActive: true
+    });
+  }
   handleHideDialog=() => {
     this.setState({
       isDeletionDialogActive: false,
       isRenameDialogActive: false,
-      isPlayerDialogActive: false
+      isPlayerDialogActive: false,
+      isInterceptDialogActive: false
     });
   }
   render() {
@@ -55,6 +63,7 @@ class MyMusic extends React.Component {
           handleShowRenDialog={this.handleShowRenameDialog}
           handleShowDelDialog={this.handleShowDeletionDialog}
           handleShowPlayDialog={this.handleShowPlayerDialog}
+          handleShowInterceptDialog={this.handleShowInterceptDialog}
         />
         <PlayerDialog
           isActive={this.state.isPlayerDialogActive}
@@ -68,6 +77,12 @@ class MyMusic extends React.Component {
           musicId={this.props.basicInfo.single}
           myMusic={this.props.entities.myMusic}
           operationActions={this.props.operationActions}
+        />
+        <InterceptDialog
+          isActive={this.state.isInterceptDialogActive}
+          musicId={this.props.basicInfo.single}
+          entities={this.props.entities}
+          onCancel={this.handleHideDialog}
         />
         <DeletionDialog
           isActive={this.state.isDeletionDialogActive}

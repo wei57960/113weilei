@@ -20,10 +20,7 @@ function basicInfo(state = { selted: 'singleton', single: ' ', multi: [] }, acti
       return { ...state, multi: newmulti };
     }
     case (ActionTypes.DELETE_REMAIN_MUSIC):
-    {
-      const newState = { ...state };
-      return { newState, single: ' ', multi: [] };
-    }
+      return { ...state, single: ' ', multi: [] };
     default:
       return state;
   }

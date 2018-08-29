@@ -24,3 +24,31 @@
     width: 100%;
     text-align: center;
 }
+
+.player-img{
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.control-btn img{
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.player-inner-bar {
+    height: 10px;
+    background: gray;
+}
+
+.playerDialog-color{
+    height: 10px;
+    background: #ff2064;
+}
+
+.playerDialog-btn{
+     height: 10px;
+    width:10px;
+    background: yellow;
+}

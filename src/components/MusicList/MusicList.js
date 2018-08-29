@@ -12,11 +12,13 @@ const ShowSelected = props => {
           className="single-selected"
         />);
       }
-      return (<img
-        src={require('../../icons/select_music.png')}
-        alt="图片不存在"
-        className="single-unselected"
-      />);
+      return (
+        <img
+          src={require('../../icons/select_music.png')}
+          alt="图片不存在"
+          className="single-unselected"
+        />
+      );
     }
     return (<img
       src={require('../../icons/select_music.png')}

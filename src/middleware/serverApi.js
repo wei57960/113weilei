@@ -49,15 +49,6 @@ const serverApi = store => next => action => {
     throw new Error('Specify a object params.');
   }
 
-  // const Token = store.getState().login.loginInfo.token;
-  // if (!Token) {
-  //   if (params.token) {
-  //     ActionStored.push(action);
-  //     console.log(ActionStored);
-  //   }
-  // } else {
-  //   params.token = Token;
-  // }
   if (action.NEED_TOKEN) {
     ActionStored.push(action);
   }
@@ -79,8 +70,14 @@ const serverApi = store => next => action => {
         __api: { endpoint, params },
         response
       }));
+      console.log(res.data.type);
       if (res.data.data.token) {
         token = res.data.data.token;
+        // for (let i = 0; i < ActionStored.length; i++) {
+        //   ActionStored[i].SERVER_API.params.token = token;
+        //   console.log(ActionStored[i])
+        //   // store.dispatch(ActionStored[i]);
+        // }
         store.dispatch(actions.fetchMyMusic({ token }));
         store.dispatch(actions.fetchCommendMusic({ token }));
       }
@@ -92,6 +89,7 @@ const serverApi = store => next => action => {
         errMsg
       }));
     });
+  return null;
 };
 
 
