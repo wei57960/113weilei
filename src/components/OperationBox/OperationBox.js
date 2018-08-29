@@ -22,7 +22,7 @@ const RenderPlayerButton = props => {
   }
   if (flag == true) {
     return (
-      <div className="oper-btn">
+      <div className="oper-btn" onClick={props.handleShowPlayDialog}>
         <img src={require('../../icons/button_new_play.png')} alt="" />
         <div>播放</div>
       </div>
@@ -50,7 +50,7 @@ const RenderRenameButton = props => {
   }
   if (flag == true) {
     return (
-      <div className="oper-btn" onClick={props.handleShowRenameDialog}>
+      <div className="oper-btn" onClick={props.handleShowRenDialog}>
         <img src={require('../../icons/button_rename_red.png')} alt="" />
         <div>重命名</div>
       </div>
@@ -162,11 +162,13 @@ const OperationBox = props => (
     <RenderPlayerButton
       selted={props.basicInfo.selted}
       single={props.basicInfo.single}
+      handleShowPlayDialog={props.handleShowPlayDialog}
     />
     <RenderRenameButton
       selted={props.basicInfo.selted}
       single={props.basicInfo.single}
       entities={props.entities}
+      handleShowRenDialog={props.handleShowRenDialog}
     />
     <RenderCutMusicButton
       selted={props.basicInfo.selted}

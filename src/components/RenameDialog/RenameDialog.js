@@ -1,7 +1,13 @@
 import React from 'react';
-import '../DeletionDialog/DeletionDialog';
+import './RenameDialog.css';
 
 class RenameDialog extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      currentMusicName: ''
+    };
+  }
   getMaskClassName = () => {
     if (!this.props.isRenameActive) {
       return 'mask hideMask';
@@ -15,26 +21,39 @@ class RenameDialog extends React.Component {
     return 'dialog showDialog';
   }
   handleRenameOperation=() => {
-
+    const operationActions = this.props.operationActions;
+    operationActions.renameMusic({
+      id: this.props.musicId,
+      musicName: this.state.currentMusicName
+    });
+    this.props.onCancel();
   }
-  handleChange=() => {
-
+  handleChange = e => {
+    this.setState({ currentMusicName: e.target.value });
   }
-  renderTitle=() => (
-    <div>
-      <div><strong>请输入新音乐名称</strong></div>
-      <input onChange={this.handleChange} />
-    </div>
-  )
+  renderTitle=() => {
+    const musicId = this.props.musicId;
+    const myMusic = this.props.myMusic;
+    let name;
+    if (myMusic[musicId]) {
+      name = myMusic[musicId].name;
+    }
+    return (
+      <div>
+        <div className="rename-title" ><strong>请输入新音乐名称</strong></div>
+        <input type="text" placeholder={name} onChange={this.handleChange} />
+      </div>
+    );
+  }
   render() {
     return (
       <div className="DialogCtn">
         <div className={this.getMaskClassName()} />
         <div className={this.getDialogClassName()}>
           {this.renderTitle()}
-          <div>
+          <div className="bottom-btn">
             <span className="cancel btn" onClick={this.props.onCancel}>取消</span>
-            <span className="ok btn" onClick={this.handleRenameOperation}>确定</span>
+            <span className="btn ok" onClick={this.handleRenameOperation}>确定</span>
           </div>
         </div>
       </div>

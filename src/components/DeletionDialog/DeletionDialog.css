@@ -60,6 +60,8 @@
 } 
 
 .ok{
-    border-left: 1px solid #e4e4e4;
-    color: rgb(60, 207, 233);
+   color: white;
+   background-color: #ff2064;
+   border-radius: 40px;
+    margin-top: 5px;
 }

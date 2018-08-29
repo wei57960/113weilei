@@ -44,7 +44,7 @@ class DeletionDialog extends React.Component {
         <div className={this.getMaskClassName()} />
         <div className={this.getDialogClassName()}>
           {this.renderTitle()}
-          <div>
+          <div className="bottom-btn">
             <span className="cancel btn" onClick={this.props.onCancel}>取消</span>
             <span className="ok btn" onClick={this.handleDeleteOperation}>确定</span>
           </div>

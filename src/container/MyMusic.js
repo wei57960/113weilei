@@ -5,30 +5,38 @@ import OperationBox from '../components/OperationBox/OperationBox';
 import ChoiceBox from '../components/ChoiceBox/ChoiceBox';
 import RenameDialog from '../components/RenameDialog/RenameDialog';
 import DeletionDialog from '../components/DeletionDialog/DeletionDialog';
+import PlayerDialog from '../components/PlayerDialog/PlayerDialog';
 
 class MyMusic extends React.Component {
   constructor() {
     super();
     this.state = {
       isDeletionDialogActive: false,
-      isRenameDialogActive: false
+      isRenameDialogActive: false,
+      isPlayerDialogActive: false
     };
   }
 
-  handleShowRenameDialog=() => {
+  handleShowDeletionDialog =() => {
+    this.setState({
+      isDeletionDialogActive: true
+    });
+  }
+  handleShowRenameDialog =() => {
     this.setState({
       isRenameDialogActive: true
     });
   }
-  handleShowDeletionDialog=() => {
+  handleShowPlayerDialog=() => {
     this.setState({
-      isDeletionDialogActive: true
+      isPlayerDialogActive: true
     });
   }
   handleHideDialog=() => {
     this.setState({
       isDeletionDialogActive: false,
-      isRenameDialogActive: false
+      isRenameDialogActive: false,
+      isPlayerDialogActive: false
     });
   }
   render() {
@@ -44,12 +52,22 @@ class MyMusic extends React.Component {
         <OperationBox
           basicInfo={this.props.basicInfo}
           entities={this.props.entities}
+          handleShowRenDialog={this.handleShowRenameDialog}
           handleShowDelDialog={this.handleShowDeletionDialog}
-          handleShowRenameDialog={this.handleShowRenameDialog}
+          handleShowPlayDialog={this.handleShowPlayerDialog}
+        />
+        <PlayerDialog
+          isActive={this.state.isPlayerDialogActive}
+          musicId={this.props.basicInfo.single}
+          entities={this.props.entities}
+          onCancel={this.handleHideDialog}
         />
         <RenameDialog
           isRenameActive={this.state.isRenameDialogActive}
           onCancel={this.handleHideDialog}
+          musicId={this.props.basicInfo.single}
+          myMusic={this.props.entities.myMusic}
+          operationActions={this.props.operationActions}
         />
         <DeletionDialog
           isActive={this.state.isDeletionDialogActive}
